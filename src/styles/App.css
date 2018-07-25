@@ -1,0 +1,23 @@
+
+.site_wrapper {
+  background: rgb(37, 37, 37);
+  height: 100vh;
+  width: 100vw;
+}
+
+.site_logo{
+  color: goldenrod;
+  font-size: 10vh;
+}
+
+.explore_button_wrapper {
+
+}
+
+.explore_button {
+  background: darkcyan;
+  color: white;
+  display: inline;
+  font-size: 15vh;
+  
+}

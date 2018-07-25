@@ -1,0 +1,12 @@
+
+.title_banner_wrapper {
+  background: gray;
+  box-shadow: 5px 5px 5px ghostwhite;
+}
+
+.banner_logo{
+  color: goldenrod;
+  font-size: 10vh;
+  padding-left: 50px;
+  text-shadow: 2px 2px 2px rgb(116, 88, 17);
+}

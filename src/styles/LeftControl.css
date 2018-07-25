@@ -1,0 +1,67 @@
+
+.left_control_wrapper {
+  display: flex;
+  height: 85vh;
+}
+  
+.left_control_box {
+  align-items: center;
+  box-shadow: 5px 5px 5px rgb(35, 35, 35);
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  margin: 0;
+  text-align: center;
+}
+
+p {
+  font-size: 3rem;
+  margin: 30px;
+}
+
+input, select, label, option {
+  font-size: 2rem;
+}
+
+.left_open_panel_wrapper {
+  align-items: center;
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px rgb(35, 35, 35);
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  margin: 0;
+  width: 130px;
+  height: 85vh;
+}
+
+/* CLOSED STYLES */
+
+.left_closed_panel_wrapper {
+  align-items: center;
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px rgb(35, 35, 35);
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  margin: 0;
+  width: 130px;
+  height: 85vh;
+}
+
+.icon_wrapper {
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.icon_wrapper :hover {
+  color: goldenrod;
+}
+
+.sideways_text {
+  color: grey;
+  font-size: 10vh;
+  text-orientation: upright;
+  text-shadow: 2px 2px 2px rgb(35, 35, 35);
+  writing-mode: vertical-lr;
+}
