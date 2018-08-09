@@ -1,0 +1,4 @@
+node_modules
+database/dbServer.js
+database/testdata.js
+dist/bundle.js

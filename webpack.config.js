@@ -1,11 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+//const nodeExternals = require('webpack-node-externals');
+
 
 module.exports = {
   // node: {
   //   fs: 'empty'
   // },
+  target: 'node',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),

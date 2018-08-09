@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import '../styles/Random.css';
+//import '../styles/Random.css';
 
 class Random extends React.Component {
   constructor(props) {

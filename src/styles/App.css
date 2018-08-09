@@ -1,4 +1,9 @@
 
+.main_wrapper {
+  background: rgb(216, 213, 213);
+}
+
+/* Pulled from past rendering */
 .site_wrapper {
   background: rgb(37, 37, 37);
   height: 100vh;
