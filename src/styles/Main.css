@@ -33,12 +33,19 @@
   border-radius: 10px;
   display: flex;
   flex-flow: column;
-  height: 30vh;
+  height: 35vh;
   justify-content: center;
-  width: 30vh;
+  width: 35vh;
+}
+
+.data_category :hover {
+  color: goldenrod;
 }
 
 .data_category_title {
-  font-size: 4vw;
+  color: rgb(70, 66, 68);
+  font-size: 3vw;
 }
+
+
 

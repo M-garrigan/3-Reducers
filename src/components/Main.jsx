@@ -3,7 +3,7 @@ import React from 'react';
 
 import MainChart from './MainChart.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faDonate, faIndustry } from '@fortawesome/free-solid-svg-icons';
 import '../styles/Main.css';
 
 class Main extends React.Component {
@@ -70,7 +70,14 @@ class Main extends React.Component {
                 <div className="data_category_title">
                   Economy
                 </div>
-                <i className="people_icon"></i>
+                <span className="icon_span">
+                  <FontAwesomeIcon
+                    className='icon'
+                    color='rgb(70, 66, 68)'
+                    size='10x'
+                    icon={faDonate}
+                  />
+               </span>
               </div>
 
               <div 
@@ -81,12 +88,24 @@ class Main extends React.Component {
                 <div className="data_category_title">
                   Manufacturing
                 </div>
-                <i className="people_icon"></i>
+                <span className="icon_span">
+                  <FontAwesomeIcon
+                    className='icon'
+                    color='rgb(70, 66, 68)'
+                    size='10x'
+                    icon={faIndustry}
+                  />
+               </span>
               </div>
             </div>
           </div>
         )
-        : ( <MainChart /> )
+        : 
+        ( 
+          <MainChart 
+            dataSet={this.props.dataSet}
+          /> 
+        )
     )}
 }
 
