@@ -1,6 +1,6 @@
 
 .banner_wrapper {
-  background-color: rgba(2, 104, 115, 0.6);
+  background-color: rgba(2, 104, 115, 0.4);
 background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
 linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
 linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
@@ -15,23 +15,9 @@ background-size: 13px, 29px, 37px, 53px;
   color: goldenrod;
   font-size: 15vh;
   padding-left: 50px;
-  text-shadow: 2px 2px 2px rgb(116, 88, 17);
+  text-shadow: 3px 3px 3px rgb(116, 88, 17);
   z-index: 10;
 }
 
-.icon_span {
-  border-bottom: 1px solid transparent;
-  margin: 0 10px;
-}
 
-.icon_span :hover {
-  border-bottom: 1px solid goldenrod;
-  color: goldenrod;
-}
 
-.button_done {
-  background: transparent;
-  border: transparent;
-  color: red;
-  font-size: 10vh;
-}
