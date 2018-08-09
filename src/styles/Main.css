@@ -15,6 +15,7 @@
 }
 
 .select_a_category_header {
+  color: rgb(70, 66, 68);
   font-size: 7vw;
 }
 
@@ -40,6 +41,11 @@
 
 .data_category :hover {
   color: goldenrod;
+}
+
+.manuf_category_title {
+  color: rgb(70, 66, 68);
+  font-size: 2.5vw;
 }
 
 .data_category_title {
