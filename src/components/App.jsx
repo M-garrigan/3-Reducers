@@ -15,7 +15,6 @@ export default class App extends React.Component {
   }
 
   handleDataSetChange (e, name) {
-    console.log('name:', name)
     e.preventDefault();
     this.setState({dataSet: name})
   }

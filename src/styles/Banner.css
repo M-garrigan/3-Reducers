@@ -1,23 +1,28 @@
 
 .banner_wrapper {
-  background-color: rgba(2, 104, 115, 0.4);
-background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
-linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
-linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
-linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
-background-size: 13px, 29px, 37px, 53px;
+  align-items: center;
+  background: #222222;
   box-shadow: 5px 5px 5px rgb(35, 35, 35);
   display: flex;
-  height: 15vh;
+  height: 20vh;
 }
 
 .banner_logo{
   color: goldenrod;
   font-size: 15vh;
-  padding-left: 50px;
-  text-shadow: 3px 3px 3px rgb(116, 88, 17);
+  text-shadow: 3px 3px 3px 3px rgb(230, 199, 122);
   z-index: 10;
 }
+
+.dataType_logo {
+  color: rgb(214, 191, 132);
+  font-size: 12vh;
+  padding-left: 50px;
+  text-shadow: 3px 3px 3px 3px rgb(230, 199, 122);
+  z-index: 10;
+}
+
+
 
 
 

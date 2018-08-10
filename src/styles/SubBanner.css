@@ -1,0 +1,19 @@
+
+.subBanner_wrapper {
+  background: #666;
+  height: 10vh;
+}
+
+.icon_group {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.save_chart {
+  background: #444;
+  border: 2px solid rgb(219, 173, 57);
+  border-radius: 5px;
+  color: rgb(219, 173, 57);
+  font-size: 6vh;
+}
