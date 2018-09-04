@@ -1,13 +1,13 @@
 
-.popConfig_wrapper {
+.popConfig_open_wrapper {
   background: steelblue;
   height: 100%;
-  width: 400px;
+  width: 300px;
 }
 
 .popConfig_closed_wrapper {
   background: steelblue;
   border-left: 3px solid #333;
   height: 100%;
-  width: 100px;
+  width: 75px;
 }

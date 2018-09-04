@@ -6,18 +6,21 @@ import Main from './Main.jsx';
 import '../styles/App.css';
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
+
+  state = {
       dataSet: 'none'
     }
-    this.handleDataSetChange = this.handleDataSetChange.bind(this);
+
+  handleDataSetChange = (e, name) => {
+    e.preventDefault();
+    this.setState({ dataSet: name })
   }
 
-  handleDataSetChange (e, name) {
+  resetStateToRenderHome = e => {
     e.preventDefault();
-    this.setState({dataSet: name})
+    this.setState({ dataSet: 'none' })
   }
+
   render() {
     
     return (
@@ -26,6 +29,7 @@ export default class App extends React.Component {
         <Main 
           dataSet={this.state.dataSet}
           handleDataSetChange={this.handleDataSetChange}
+          resetStateToRenderHome={this.resetStateToRenderHome}
         />
       </div>
     );

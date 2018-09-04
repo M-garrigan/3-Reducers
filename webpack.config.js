@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
-
 module.exports = {
   target: 'node',
   entry: './src/index.js',
@@ -15,7 +14,11 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        loader : 'babel-loader',
+        // use: 'babel-loader',
+        options: {
+          presets: ['react', 'env', 'stage-0']
+        }
       },
       {
         test: /\.css$/,
@@ -52,7 +55,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
   devServer: {
     contentBase: './dist'

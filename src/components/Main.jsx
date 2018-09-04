@@ -1,7 +1,5 @@
 
 import React from 'react';
-
-import MainChart from './MainChart.jsx';
 import PopulationChart from './PopulationChart/PopulationChart.jsx';
 import EconomyChart from './EconomyChart/EconomyChart.jsx';
 import ManufacturingChart from './ManufacturingChart/ManufacturingChart.jsx';
@@ -11,20 +9,15 @@ import { faUsers, faDonate, faIndustry } from '@fortawesome/free-solid-svg-icons
 import '../styles/Main.css';
 
 export default class Main extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      
-      statesArray: [],
-      left: null,
-      right_SortBy: 'Population',
-      right_Compare: [],
-      db_Data: [],
-      chart: 'bar'
+  state = {
+    statesArray: [],
+    left: null,
+    right_SortBy: 'Population',
+    right_Compare: [],
+    db_Data: [],
+    chart: 'bar'
     }
     
-  }
-
   render() {
     
     if (this.props.dataSet === 'Population') {
@@ -56,7 +49,7 @@ export default class Main extends React.Component {
                   <FontAwesomeIcon
                     className='icon'
                     color='rgb(70, 66, 68)'
-                    size='10x'
+                    size='8x'
                     icon={faUsers}
                   />
               </span>
@@ -74,7 +67,7 @@ export default class Main extends React.Component {
                   <FontAwesomeIcon
                     className='icon'
                     color='rgb(70, 66, 68)'
-                    size='10x'
+                    size='8x'
                     icon={faDonate}
                   />
               </span>
@@ -92,7 +85,7 @@ export default class Main extends React.Component {
                   <FontAwesomeIcon
                     className='icon'
                     color='rgb(70, 66, 68)'
-                    size='10x'
+                    size='8x'
                     icon={faIndustry}
                   />
                 </span>
