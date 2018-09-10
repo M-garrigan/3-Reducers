@@ -1,0 +1,36 @@
+
+.banner_wrapper {
+  align-items: center;
+  background: rgb(71, 69, 69);
+  background-image: url('../../helpers/pics/black-thread-light.png');
+  box-shadow: 5px 5px 5px rgb(35, 35, 35);
+  display: flex;
+  justify-content: space-evenly;
+  height: 18vh;
+  z-index: 10;
+}
+
+.banner_logo{
+  color: goldenrod;
+  font-size: 8vw;
+  padding-left: 30px;
+  text-shadow: 5px 5px 5px rgb(15, 15, 15);
+}
+
+.icon_span {
+  border: 1px solid goldenrod;
+  color: goldenrod;
+  font-size: 3vw;
+  margin: 0 10px;
+  padding: 10px;
+  text-shadow: 3px 3px 3px rgb(15, 15, 15);
+}
+
+.active {
+  background: antiquewhite;
+}
+
+.icon_span :hover {
+  border: 1px solid goldenrod;
+  color: goldenrod;
+}

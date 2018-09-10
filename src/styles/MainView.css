@@ -1,0 +1,10 @@
+
+.mainview_wrapper {
+  background: rgb(216, 213, 213);
+  background-image: url('../../helpers/pics/diamond-upholstery.png');
+  display: flex;
+  flex-wrap: nowrap;
+  height: 82vh;
+  overflow: scroll;
+  z-index: 8;
+}

@@ -1,0 +1,79 @@
+
+.custom_wrapper {
+  background: white;
+  
+  box-shadow: 0 0 5px lightblue;
+  flex: 1 1 auto;
+  /* flex-grow: 1; */
+  height: 82vh;
+  margin: 0 auto;
+}
+.Squares {
+  background-color: #00138f;
+  background-image: url('../../helpers/pics/bright-squares.png');
+}
+.Paper {
+  background-color: rgb(199, 218, 218);
+  background-image: url('../../helpers/pics/beige-paper.png');
+}
+.Diamonds{
+  background-color: rgb(72, 41, 82);
+  background-image: url('../../helpers/pics/diamond-upholstery.png');
+}
+.Brick{
+  background-color: rgb(128, 17, 17);
+  background-image: url('../../helpers/pics/brick-wall.png');
+}
+
+.None{
+  background: white;
+}
+
+.chart-inner-wrapper {
+  padding: 15px;
+  margin: 0 auto;
+  margin-top: 30px;
+  max-width: 800px;
+
+  overflow: auto;
+}
+
+.scatterplot_flex_wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.custom_title {
+  font-size: 2rem;
+  
+  margin: 0 auto;
+  overflow: scroll;
+  text-align: center;
+}
+
+/* .save_wrapper {
+  align-items: center;
+  border-bottom: 1px solid black;
+  display: flex;
+  height: 120px;
+  justify-content: center;
+}
+.download_cluster {
+  display:flex;
+}
+
+.save_button {
+  background: bisque;
+  font-size: 2rem;
+}
+
+.save_input {
+  background: aqua;
+  font-size: 2rem;
+  width: 400px;
+}
+
+.save_png {
+  font-size: 3rem;
+} */
