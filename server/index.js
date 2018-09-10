@@ -2,8 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const {seedData} = require('../database/dbServer');
-
+const chartRoutes = require('./routes/chartRoutes');
 const stateRoutes = require('./routes/stateRoutes');
 
 const app = express();
@@ -11,6 +10,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '/../dist')));
 app.use(bodyParser.json());
 
+app.use('/chart', chartRoutes);
 app.use('/states', stateRoutes);
 
 app.get('/', (req, res) => {

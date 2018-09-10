@@ -1,6 +1,7 @@
 
 import React from 'react';
 import axios from 'axios';
+import qs from 'qs';
 import SubBanner from '../SubBanner.jsx';
 import ViewArea from '../ViewArea.jsx';
 import PopConfig from './PopConfig.jsx';
@@ -11,6 +12,7 @@ export default class PopulationChart extends React.Component {
     isPopConfigOpen: true,
     sortBy: 'Population',
     statesArray: [],
+    stateData: null,
     statesSelected: [],
     currentState: 'Select A State'
   }
@@ -31,7 +33,6 @@ export default class PopulationChart extends React.Component {
   }
 
   handleStatesSelection = event => {
-    console.log('event:', event.target.value);
     let newState = event.target.value;
     event.preventDefault();
     this.setState(prevState => ({
@@ -40,8 +41,23 @@ export default class PopulationChart extends React.Component {
     }));
   }
 
-  render() {
+  buildChart = event => {
+    event.preventDefault();
 
+    axios.get(
+      `/chart/${this.state.sortBy}`, 
+      { params: { states: qs.stringify(this.state.statesSelected) } }
+    )
+    .then( response => { 
+      this.setState({
+        stateData: response.data
+      });
+     })
+    .catch(error => console.error(error));
+  }
+
+  render() {
+    console.log('stateData: ', this.state.stateData);
     // render list of states from db
     if (this.state.statesArray.length === 0) {
       axios.get('/states/render')
@@ -59,7 +75,10 @@ export default class PopulationChart extends React.Component {
       <div className='population_chart_wrapper'>
         <SubBanner />
         <div className="view_wrapper">
-          <ViewArea />
+          <ViewArea 
+            stateData={this.state.stateData}
+            chart={this.props.chart}
+          />
           <PopConfig 
             isPopConfigOpen={this.state.isPopConfigOpen}
             sortBy={this.state.sortBy}
@@ -69,6 +88,7 @@ export default class PopulationChart extends React.Component {
             toggleIsPopConfigOpen={this.toggleIsPopConfigOpen}
             handleSortBy={this.handleSortBy}
             handleStatesSelection={this.handleStatesSelection}
+            buildChart={this.buildChart}
             
           />
         </div>

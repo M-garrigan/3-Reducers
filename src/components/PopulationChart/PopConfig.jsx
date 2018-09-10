@@ -61,7 +61,7 @@ export default class PopConfig extends React.Component {
 
             <button
               className="pop-create-chart-button"
-              onClick={e => this.props.createChart(e)}
+              onClick={e => this.props.buildChart(e)}
             >
               Create
             </button>

@@ -5,3 +5,9 @@
   height: 100%;
 }
 
+.barChart {
+  border: 2px solid black;
+  /* height: 90%;
+  width: 90%; */
+}
+

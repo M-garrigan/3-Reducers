@@ -10,18 +10,13 @@ import '../styles/Main.css';
 
 export default class Main extends React.Component {
   state = {
-    statesArray: [],
-    left: null,
-    right_SortBy: 'Population',
-    right_Compare: [],
-    db_Data: [],
     chart: 'bar'
     }
     
   render() {
     
     if (this.props.dataSet === 'Population') {
-      return (<PopulationChart />)
+      return (<PopulationChart chart={this.state.chart} />)
     }
     else if (this.props.dataSet === 'Economy') {
       return (<EconomyChart />)
