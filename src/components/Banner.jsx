@@ -11,7 +11,15 @@ export default class Banner extends React.Component {
       currentTab: 'BAR'
     }
     this.handleCurrentTab = this.handleCurrentTab.bind(this);
+    // this.seedData = this.seedData.bind(this);
   }
+
+  // seedData(e) {
+  //   e.preventDefault();
+  //   axios.get('/seed')
+  //     .then(res => console.log(res))
+  //     .catch(err => console.log(err));
+  // }
 
   handleCurrentTab(e) {
     this.props.handleChart(e);
@@ -42,6 +50,7 @@ export default class Banner extends React.Component {
           // onClick={e => this.handleActiveChart(e)}
         >
           {iconsMapped} 
+          {/* <span onClick={e => this.seedData(e)}>SEED</span> */}
         </div>
       </div>
     );

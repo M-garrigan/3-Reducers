@@ -7,6 +7,7 @@ const retrievePop = require('../database/dbServer.js').retrievePop;
 const retrieveDens = require('../database/dbServer.js').retrieveDens;
 const retrievePopRange = require('../database/dbServer.js').retrievePopRange;
 const retrieveDensRange = require('../database/dbServer.js').retrieveDensRange;
+const { seedTables } = require('../database/seedTables.js');
 
 const app = express();
 const port = 5080;
@@ -48,6 +49,8 @@ app.get('/densityRange', (req, res) => {
     if (err) res.status(500).send(err);
     else res.status(201).send(result)});
 });
+
+app.get('/seed', seedTables);
 
   
 app.listen(port, () => console.log('listening on port 5080...'));

@@ -44,7 +44,7 @@ class RightControl extends React.Component {
             <FontAwesomeIcon
               className='icon'
               color='grey'
-              size='8x'
+              size='5x'
               icon={faChevronRight}
             />
           </span>
@@ -128,7 +128,7 @@ class RightControl extends React.Component {
             <FontAwesomeIcon
               className='icon'
               color='grey'
-              size='8x'
+              size='5x'
               icon={faChevronLeft}
             />
           </span>
