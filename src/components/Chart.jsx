@@ -2,13 +2,14 @@ import React from 'react';
 import BarChart from './charts/BarChart/BarChart.jsx';
 import BubbleRoot from './charts/Bubbles/BubbleRoot.jsx';
 import SVG from './SVG.jsx';
+import Pie from '../components/charts/Pie/Pie.jsx';
 import {PieChart} from 'react-easy-chart';
 import {LineChart, AreaChart} from 'react-easy-chart';
 import {ScatterplotChart} from 'react-easy-chart';
 import {Legend} from 'react-easy-chart';
 import {dummyData} from './charts/Bubbles/dummyData.js';
 import {saveSvgAsPng} from 'save-svg-as-png';
-console.log(saveSvgAsPng);
+//console.log(saveSvgAsPng);
 
 import '../styles/Chart.css';
 
@@ -69,19 +70,23 @@ export default class Chart extends React.Component {
         </div>
       )}
     else if (this.props.config.chart === "pie" && this.props.config.data.length !== 0) {
+      
       return (
         <div className={'custom_wrapper ' + this.props.backgroundTextures}>
           <div 
             className='custom_title'
             value={this.props.custom_title}
           >{this.props.custom_title}</div>
-          <PieChart
+          <Pie 
+            data={this.props.config.data}
+          />
+          {/* <PieChart
             // padding={100}
             size={500}
             innerHoleSize={100}
             labels
             data={this.props.config.data}
-          />
+          /> */}
         </div>
       )}
     else if (this.props.config.chart === "scatter" && this.props.config.data.length !== 0) {

@@ -12,6 +12,7 @@ export default ({ scales, margins, svgDimensions }) => {
     tickSize: height - margins.top - margins.bottom,
   }
 
+  
   const yProps = {
     orient: 'Left',
     scale: scales.yScale,

@@ -3,6 +3,7 @@ import React from 'react';
 import {PieChart} from 'react-easy-chart';
 
 const Pie = (props) => (
+  
   <PieChart
     size={400}
     innerHoleSize={50}
