@@ -9,12 +9,16 @@ const retrievePopRange = require('../database/dbServer.js').retrievePopRange;
 const retrieveDensRange = require('../database/dbServer.js').retrieveDensRange;
 const { seedTables } = require('../database/seedTables.js');
 
-const app = express();
-const port = 5080;
+const chartRoutes = require('./routes/chartRoutes');
+const stateRoutes = require('./routes/stateRoutes');
 
+const app = express();
 
 app.use(express.static(path.join(__dirname, '/../dist')));
 app.use(bodyParser.json());
+
+app.use('/chart', chartRoutes);
+app.use('/states', stateRoutes);
 
 app.get('/', (req, res) => {
   res.send();
@@ -52,5 +56,6 @@ app.get('/densityRange', (req, res) => {
 
 app.get('/seed', seedTables);
 
-  
-app.listen(port, () => console.log('listening on port 5080...'));
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => console.log('listening on port 8080...'));

@@ -122,4 +122,4 @@ findAllPopulations( (err, result) => {
     // console.log('ARR', dataArr);
     callback(dataArr);
   }
-})
+});

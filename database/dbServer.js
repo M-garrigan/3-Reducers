@@ -1,15 +1,10 @@
+
 const mysql = require('mysql');
-const {dbConfig} = require('../helpers/config.js');
+const { dbConfig } = require('../config.js');
 
-const connection = mysql.createConnection(dbConfig);
+const pool = mysql.createPool(dbConfig);
 
-connection.connect( err => {
-  if (err) {
-    console.error(`err connecting: ${err.stack}`);
-    return;
-  }
-  console.log(`db connected as ${connection.threadId}`);
-});
+module.exports = { pool };
 
 exports.retrieveNames = (callback) => {
   connection.query(

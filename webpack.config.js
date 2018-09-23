@@ -1,12 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  // mode: 'development',
-  //target: 'node',
-  // externals: [nodeExternals()],
+  target: 'node',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -17,7 +14,11 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        loader : 'babel-loader',
+        // use: 'babel-loader',
+        options: {
+          presets: ['react', 'env', 'stage-0']
+        }
       },
       {
         test: /\.css$/,
@@ -80,58 +81,5 @@ module.exports = {
   plugins: [
     new LodashModuleReplacementPlugin,
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/)
-                        
   ]
-  
 }
-
-
-// var path = require('path');
-// var SRC_DIR = path.join(__dirname, '/src');
-// var DIST_DIR = path.join(__dirname, '/dist');
-
-// module.exports = {
-//   entry: {
-//     app: ['babel-polyfill', `${SRC_DIR}/index.js`,]
-//   },
-//   output: {
-//     filename: 'bundle.js',
-//     path: DIST_DIR
-//   },
-//   module : {
-//     rules : [
-//       {
-//         test : /\.jsx?/,
-//         include : SRC_DIR,
-//         loader : 'babel-loader',      
-//         options: {
-//           presets: ['react', 'env', 'stage-0']
-//         }
-//       },
-//       {
-//         test: /\.css$/,
-//         use: [
-//           'style-loader',
-//           'css-loader'
-//         ]
-//       },
-//       {
-//         test: /\.svg$/,
-//         use: [
-//           'file-loader'
-//         ]
-//       },
-//       {
-//         test: /\.png$/,
-//         use: [
-//           {
-//             loader: 'url-loader',
-//             options: {
-//               mimetype: 'image/png'
-//             }
-//           }
-//         ]
-//       }
-//     ]
-//   }
-// };

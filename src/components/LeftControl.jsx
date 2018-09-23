@@ -58,8 +58,7 @@ export default class LeftControl extends React.Component {
             <br/>
             <input 
               id='title'
-              value={this.props.input_title} 
-              onChange={e => this.props.handleCustomTitle(e)}
+              value={this.state.title} 
               type='text'
             />
             <br/>
@@ -77,9 +76,7 @@ export default class LeftControl extends React.Component {
             <p className='background_text text'>
               Background Texture
             </p>
-            <select 
-              onChange={e => this.props.handleBackgroundTextures(e)}
-              className='background_texture_select'>
+            <select className='background_texture_select'>
               { backgroundTextureOptionElements } 
             </select>
           </div>

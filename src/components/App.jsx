@@ -1,39 +1,37 @@
 
 import React from 'react';
+
+import Banner from './Banner.jsx';
 import Main from './Main.jsx';
 import '../styles/App.css';
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isClickedToEnter: false
+
+  state = {
+      dataSet: 'none'
     }
-    this.enterSite = this.enterSite.bind(this);
+
+  handleDataSetChange = (e, name) => {
+    e.preventDefault();
+    this.setState({ dataSet: name })
   }
 
-  enterSite(e) {
+  resetStateToRenderHome = e => {
     e.preventDefault();
-    this.setState(prevState => ({
-      isClickedToEnter: !prevState.isClickedToEnter
-    }))
+    this.setState({ dataSet: 'none' })
   }
 
   render() {
+    
     return (
-      this.state.isClickedToEnter
-        ?  <Main />
-        :  (
-          <div className='site_wrapper'>
-            <h1 className='site_logo'>VSON</h1>
-            <div 
-              className='explore_button'
-              onClick={e => this.enterSite(e)}
-            >
-            Explore
-            </div>
-          </div>
-        )
-    )}
-};
-
+      <div className='main_wrapper'>
+        <Banner dataSet={this.state.dataSet}/>
+        <Main 
+          dataSet={this.state.dataSet}
+          handleDataSetChange={this.handleDataSetChange}
+          resetStateToRenderHome={this.resetStateToRenderHome}
+        />
+      </div>
+    );
+  }
+}

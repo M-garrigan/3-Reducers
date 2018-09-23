@@ -3,6 +3,7 @@
   display: flex;
   flex: 0 0 300px;
   /* height: 82vh; */
+  height: 85vh;
 }
   
 .left_control_box {
@@ -10,7 +11,8 @@
   box-shadow: 5px 5px 5px rgb(35, 35, 35);
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
+  justify-content: flex-start;
+  margin: 0;
   text-align: center;
 }
 
