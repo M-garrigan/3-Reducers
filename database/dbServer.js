@@ -52,6 +52,5 @@ exports.seedDB = array => {
   connection.query(query, [array], (err, results) => {
     if (err) throw err;
   });
-
   // 'INSERT INTO usa_counties_states (state_id, state_name, county_id, county_name) VALUES ?'
 }

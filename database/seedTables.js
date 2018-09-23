@@ -30,20 +30,3 @@ module.exports = {
       .catch(err => console.log(err));
   }
 }
-
-// let format = [];
-//         let q = response.data;
-
-//         for (let i = 1; i < q.length; i +=1) {
-//           console.log('QQQ: ', q[i]);
-//           let inner = [];
-//           let split = q[i][2].split(',');
-
-//           inner[0] = +q[i][3];
-//           inner[1] = split[1].trim();
-//           inner[2] = +q[i][4];
-//           inner[3] = split[0];
-
-//           format.push(inner);
-//         }
-//         seedDB(format);
