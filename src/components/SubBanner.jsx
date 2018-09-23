@@ -10,25 +10,29 @@ export default class SubBanner extends React.Component {
   constructor(props) {
     super(props)
   }
-                       
+         
+  
   render() {
     return (
       <div className="subBanner_wrapper">
         <div className="icon_group">
 
-          <span className="icon_span">
-            <FontAwesomeIcon
-              className='icon'
-              color='#444'
-              size='3x'
-              icon={faChartBar}
-            />
-          </span>
+          <div className="chart-group">
+            <span className="icon_span">
+              <FontAwesomeIcon
+                className='sub-icon'
+                size='3x'
+                icon={faChartBar}
+              />
+            </span>
+            <span className="chart-title">Bar</span>
+          </div>
+          
 
           <span className="icon_span">
             <FontAwesomeIcon
-              className='icon'
-              color='#444'
+              className='sub-icon'
+              
               size='3x'
               icon={faChartPie}
             />

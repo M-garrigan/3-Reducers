@@ -8,7 +8,7 @@ import '../styles/App.css';
 export default class App extends React.Component {
 
   state = {
-      dataSet: 'none'
+      dataSet: 'Select a Data Type'
     }
 
   handleDataSetChange = (e, name) => {
@@ -18,18 +18,20 @@ export default class App extends React.Component {
 
   resetStateToRenderHome = e => {
     e.preventDefault();
-    this.setState({ dataSet: 'none' })
+    this.setState({ dataSet: 'Select a Data Type' })
   }
 
   render() {
     
     return (
       <div className='main_wrapper'>
-        <Banner dataSet={this.state.dataSet}/>
-        <Main 
+        <Banner 
           dataSet={this.state.dataSet}
           handleDataSetChange={this.handleDataSetChange}
           resetStateToRenderHome={this.resetStateToRenderHome}
+        />
+        <Main 
+          dataSet={this.state.dataSet}
         />
       </div>
     );

@@ -1,28 +1,43 @@
 
-.banner_wrapper {
+.banner-wrapper {
   align-items: center;
-  background: #222222;
+  background: #444;
   box-shadow: 5px 5px 5px rgb(35, 35, 35);
   display: flex;
-  height: 20vh;
+  height: 5rem;
 }
 
-.banner_logo{
+.text-left {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.banner-logo{
   color: goldenrod;
-  font-size: 15vh;
+  font-size: 4rem;
   text-shadow: 3px 3px 3px 3px rgb(230, 199, 122);
-  z-index: 10;
 }
 
-.dataType_logo {
+.data-type {
   color: rgb(214, 191, 132);
-  font-size: 12vh;
+  font-size: 3rem;
   padding-left: 50px;
   text-shadow: 3px 3px 3px 3px rgb(230, 199, 122);
-  z-index: 10;
 }
 
+/* Start Icon Cluster */
+.icons-right {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
 
-
-
-
+.data-category {
+  align-items: center;
+  background: rgb(95, 150, 160);
+  border: 3px solid goldenrod;
+  border-radius: 10px;
+  color: goldenrod;
+  margin: 0 10px;
+}

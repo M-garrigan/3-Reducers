@@ -10,6 +10,17 @@
   justify-content: space-around;
 }
 
+.chart-group {
+  border: 3px solid #444;
+  color: #444;
+  
+  /* height: 100px; */
+  /* text-shadow: 5px 5px 5px black; */
+}
+
+.chart-title {
+  font-size: 3rem;
+}
 .save_chart {
   background: #444;
   border: 2px solid rgb(219, 173, 57);

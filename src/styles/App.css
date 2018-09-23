@@ -12,17 +12,3 @@
   padding: 150px 0 0 200px;
   text-shadow: 5px 5px 5px black;
 }
-
-.explore_button {
-  border: 3px solid  rgb(131, 196, 196);
-  border-radius: 4px;
-  color: rgb(131, 196, 196);
-  display: inline-block;
-  font-size: 12vw;
-  margin: 0 0 0 50%;
-  padding: 30px;
-  text-shadow: 5px 5px 5px black;
-}
-.main_wrapper {
-  background: rgb(216, 213, 213);
-}

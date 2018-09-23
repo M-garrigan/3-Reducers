@@ -3,66 +3,15 @@
   height: 100%;
   width: 100%;
 }
-.select_a_category {
-  align-items: center;
-  background: rgb(71, 69, 69)
-  ;
+.splash-wrapper {
+  background: #555;
   background-image: url('../assets/black-thread-light.png');
-  display: flex;
-  flex-flow: column;
-  height: 80vh;
-  justify-content: space-evenly;
+  height: 200vh;
+  margin: 0 auto;
 }
 
-.select_a_category_header {
+.splash-text {
   color: antiquewhite;
   font-size: 7vw;
+  padding: 100px 0 0;
 }
-
-.data_category_wrapper {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 80vw;
-}
-
-.data_category {
-  align-items: center;
-  background: rgba(126, 121, 123, 0.8);
-  border: 3px solid goldenrod;
-  border-radius: 10px;
-  display: flex;
-  flex-flow: column;
-  height: 35vh;
-  justify-content: center;
-  width: 35vh;
-}
-
-/* On hover style change */
-.data_category:hover .icon {
-  color: goldenrod;
-}
-
-.data_category:hover .data_category_title{
-  color: goldenrod;
-}
-
-.data_category:hover {
-  background: rgb(95, 150, 160);
-}
-
-.manuf_category_title {
-  color: rgb(70, 66, 68);
-  font-size: 2.5vw;
-}
-
-.data_category_title {
-  color: rgb(70, 66, 68);
-  font-size: 3vw;
-}
-
-
-
-
-

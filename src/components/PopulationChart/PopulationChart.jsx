@@ -25,7 +25,6 @@ export default class PopulationChart extends React.Component {
   }
 
   handleSortBy = event => {
-    console.log('sort:')
     event.preventDefault();
     this.setState({
       sortBy: event.target.value
@@ -70,6 +69,7 @@ export default class PopulationChart extends React.Component {
         })
         .catch(error => console.error('Error retrieving list of available states:', error));
     }
+    
     return (
       <div className='population_chart_wrapper'>
         <SubBanner />
