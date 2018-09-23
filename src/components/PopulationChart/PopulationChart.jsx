@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import qs from 'qs';
 import SubBanner from '../SubBanner.jsx';
-import ViewArea from '../ViewArea.jsx';
+import Chart from '../Chart.jsx';
 import PopConfig from './PopConfig.jsx';
 import '../../styles/PopulationChart.css';
 
@@ -72,11 +72,13 @@ export default class PopulationChart extends React.Component {
     
     return (
       <div className='population_chart_wrapper'>
-        <SubBanner />
+        <SubBanner 
+          handleChartSelected={this.props.handleChartSelected}
+        />
         <div className="view_wrapper">
-          <ViewArea 
+          <Chart 
             stateData={this.state.stateData}
-            chart={this.props.chart}
+            chartSelected={this.props.chartSelected}
           />
           <PopConfig 
             isPopConfigOpen={this.state.isPopConfigOpen}

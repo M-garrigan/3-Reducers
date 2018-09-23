@@ -3,61 +3,31 @@ import BarChart from './charts/BarChart/BarChart.jsx';
 import BubbleRoot from './charts/Bubbles/BubbleRoot.jsx';
 import SVG from './SVG.jsx';
 import Pie from '../components/charts/Pie/Pie.jsx';
-import {PieChart} from 'react-easy-chart';
-import {LineChart, AreaChart} from 'react-easy-chart';
-import {ScatterplotChart} from 'react-easy-chart';
-import {Legend} from 'react-easy-chart';
+
 import {dummyData} from './charts/Bubbles/dummyData.js';
-import {saveSvgAsPng} from 'save-svg-as-png';
-//console.log(saveSvgAsPng);
 
 import '../styles/Chart.css';
 
 export default class Chart extends React.Component {
-// constructor(props) {
-//   super(props)
-//   this.state = {
-//     svgRef: ''
-//   }
-//   this.setSvgRef = this.setSvgRef.bind(this);
-//   this.download = this.download.bind(this);
-// }
-
-// setSvgRef(el) {
-//   this.setState({svgRef: el})
-// }
-
-// download(e) {
-//   e.preventDefault();
-//    console.log('ref', this.state.svgRef);
-// }
 
   render() {
 
-    const legendStyle = {
-      '.legend': {
-        backgroundColor: '#f9f9f9',
-        border: '1px solid #e5e5e5',
-        borderRadius: '5px',
-        fontSize: '1.5rem',
-        padding: '5px'
-      }
-    }
+    // console.log('config:', this.props.config);
     
-    if (this.props.config === null) {
-      return (
-      <div className={'custom_wrapper ' + this.props.backgroundTextures}>
-        <div 
-          className='custom_title'
-          value={this.props.custom_title}
-        >{this.props.custom_title}</div>
-        <BubbleRoot 
-          setSvgRef={this.setSvgRef}
-          dummyData={dummyData}
-        />
-      </div>)
-    }
-    else if (this.props.config.chart === "bar" && this.props.config.data.length !== 0) {
+    // if (this.props.chartSelected === '') {
+    //   return (
+    //   <div className={'custom_wrapper '}>
+    //     <div 
+    //       className='custom_title'
+    //       value={this.props.custom_title}
+    //     >{this.props.custom_title}</div>
+    //     <BubbleRoot 
+    //       setSvgRef={this.setSvgRef}
+    //       dummyData={dummyData}
+    //     />
+    //   </div>)
+    // }
+    if (this.props.chartSelected === "bar") {
       return (
         <div className={'custom_wrapper ' + this.props.backgroundTextures}>
           <div 
@@ -69,7 +39,7 @@ export default class Chart extends React.Component {
           />
         </div>
       )}
-    else if (this.props.config.chart === "pie" && this.props.config.data.length !== 0) {
+    else if (this.props.chartSelected === "pie") {
       
       return (
         <div className={'custom_wrapper ' + this.props.backgroundTextures}>
@@ -78,7 +48,7 @@ export default class Chart extends React.Component {
             value={this.props.custom_title}
           >{this.props.custom_title}</div>
           <Pie 
-            data={this.props.config.data}
+            // data={this.props.config.data}
           />
           {/* <PieChart
             // padding={100}
