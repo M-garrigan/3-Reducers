@@ -1,46 +1,74 @@
 
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/PopConfig.css'
+import { faArrowAltCircleLeft, faArrowAltCircleRight, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import './PopConfig.css';
 
 export default class PopConfig extends React.Component {
+  state = {
+    isConfigOpen: true
+  };
+
+  toggleConfigPanel = (e) => {
+    e.preventDefault();
+    this.setState(prevState => ({
+      isConfigOpen: !prevState.isConfigOpen
+    }));
+  }
 
   render() {
 
-    const categories = ['Population', 'Density', 'Growth', 'Area'].map( category => {
+    if (this.state.isConfigOpen) {
       return (
-        <option 
-          key={Date.now() * Math.random()} 
-          value={category}
-          className="pop-category"
-        >{category}</option>
-      )
-    });
-
-    if (this.props.isPopConfigOpen) {
-      return (
-        <div className="popConfig_open_wrapper">
+        <div className="config-open">
           <FontAwesomeIcon
             className='icon'
-            onClick={e => this.props.toggleIsPopConfigOpen(e)}
+            onClick={e => this.toggleConfigPanel(e)}
             color='rgb(70, 66, 68)'
-            size='4x'
+            size='2x'
             icon={faArrowAltCircleRight}
           />
-          <div className="pop-control-box">
 
-            <div className="pop-sort">Sort By:</div>
+          <div className="pop-control-box">
+            <div className="pop-sort">Chart Builder:</div>
 
             <select 
               onChange={e => {this.props.handleSortBy(e)}}
               className="pop-sort-select"
               value={this.props.sortBy}
             >
-              { categories }
+              { 
+                ['Population', 'Density'].map( category => {
+                  return (
+                    <option 
+                      key={category} 
+                      value={category}
+                      className="pop-category"
+                    >{category}</option>
+                  )
+                })
+              }
             </select>
 
-            <div className="pop-compare">Compare:</div>
+            <select 
+              onChange={e => {this.props.handleAutoGrouping(e)}}
+              className="pop-autoGroup-select"
+              value={this.props.autoGroup}
+            >
+              { 
+                ['Top 10', 'Top 5', 'Top 5/Bottom 5', 'Bottom 5', 'Bottom 10'].map( group => {
+                  return (
+                    <option 
+                      key={group} 
+                      value={group}
+                      className="pop-category"
+                    >{group}</option>
+                  )
+                })
+              }
+            </select>
+
+            <div className="pop-indiv-state">or Compare Mulitple States:</div>
 
             <select 
               onChange={e => {this.props.handleStatesSelection(e)}}
@@ -50,7 +78,7 @@ export default class PopConfig extends React.Component {
               { this.props.statesArray.map( state => {
                   return (
                     <option 
-                      key={Date.now() * Math.random()} 
+                      key={state} 
                       value={state}
                       className="pop-state"
                     >{state}</option>
@@ -58,6 +86,24 @@ export default class PopConfig extends React.Component {
                 }) 
               }
             </select>
+
+            {
+              this.props.statesGroup.map( (state, idx) => {
+                return (
+                  <button className="state-group-button">
+                    {state}
+                    <FontAwesomeIcon
+                      onClick={e => this.props.removeStateFromGroup(e, idx)}
+                      key={state}
+                      className="remove-state"
+                      color='rgb(70, 66, 68)'
+                      size='1x'
+                      icon={faTimesCircle}
+                    />
+                  </button>
+                )
+              })
+            }
 
             <button
               className="pop-create-chart-button"
@@ -71,12 +117,12 @@ export default class PopConfig extends React.Component {
       )
     } else {
       return (
-        <div className="popConfig_closed_wrapper">
+        <div className="config-closed">
           <FontAwesomeIcon
             className='icon'
-            onClick={e => this.props.toggleIsPopConfigOpen(e)}
+            onClick={e => this.toggleConfigPanel(e)}
             color='rgb(70, 66, 68)'
-            size='4x'
+            size='2x'
             icon={faArrowAltCircleLeft}
           />
         </div>

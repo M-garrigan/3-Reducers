@@ -1,12 +1,8 @@
 
-.custom_wrapper {
+.chart-wrapper {
   background: white;
-  
-  box-shadow: 0 0 5px lightblue;
-  flex: 1 1 auto;
-  /* flex-grow: 1; */
+  flex: 1;
   height: 82vh;
-  margin: 0 auto;
 }
 .Squares {
   background-color: #00138f;
@@ -51,29 +47,3 @@
   overflow: scroll;
   text-align: center;
 }
-
-/* .save_wrapper {
-  align-items: center;
-  border-bottom: 1px solid black;
-  display: flex;
-  height: 120px;
-  justify-content: center;
-}
-.download_cluster {
-  display:flex;
-}
-
-.save_button {
-  background: bisque;
-  font-size: 2rem;
-}
-
-.save_input {
-  background: aqua;
-  font-size: 2rem;
-  width: 400px;
-}
-
-.save_png {
-  font-size: 3rem;
-} */

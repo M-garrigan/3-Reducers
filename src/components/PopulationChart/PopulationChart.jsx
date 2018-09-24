@@ -5,23 +5,16 @@ import qs from 'qs';
 import SubBanner from '../SubBanner.jsx';
 import Chart from '../Chart.jsx';
 import PopConfig from './PopConfig.jsx';
-import '../../styles/PopulationChart.css';
+import './PopulationChart.css';
 
 export default class PopulationChart extends React.Component {
   state = {
-    isPopConfigOpen: true,
     sortBy: 'Population',
+    autoGroup: 'Top 10',
+    currentState: 'Alabama',
     statesArray: [],
     stateData: null,
-    statesSelected: [],
-    currentState: 'Select A State'
-  }
-
-  toggleIsPopConfigOpen = event  => {
-    event.preventDefault();
-    this.setState(prevState => ({
-      isPopConfigOpen: !prevState.isPopConfigOpen
-    }));
+    statesGroup: []
   }
 
   handleSortBy = event => {
@@ -31,12 +24,26 @@ export default class PopulationChart extends React.Component {
     });
   }
 
+  handleAutoGrouping = event => {
+    event.preventDefault();
+    this.setState({
+      autoGroup: event.target.value
+    });
+  }
+
   handleStatesSelection = event => {
     let newState = event.target.value;
-    event.preventDefault();
+    event.preventDefault(event.target.value);
     this.setState(prevState => ({
       currentState: newState,
-      statesSelected: [...prevState.statesSelected, newState]
+      statesGroup: [...prevState.statesGroup, newState]
+    }));
+  }
+
+  removeStateFromGroup = (event, idx) => {
+    event.preventDefault();
+    this.setState(prevState => ({
+      statesGroup: prevState.statesGroup.filter( (_, i) => i !== idx)
     }));
   }
 
@@ -75,20 +82,21 @@ export default class PopulationChart extends React.Component {
         <SubBanner 
           handleChartSelected={this.props.handleChartSelected}
         />
-        <div className="view_wrapper">
+        <div className="pop-wrapper">
           <Chart 
             stateData={this.state.stateData}
             chartSelected={this.props.chartSelected}
           />
           <PopConfig 
-            isPopConfigOpen={this.state.isPopConfigOpen}
+            currentState={this.state.currentState}
             sortBy={this.state.sortBy}
             statesArray={this.state.statesArray}
-            currentState={this.state.currentState}
+            statesGroup={this.state.statesGroup}
 
-            toggleIsPopConfigOpen={this.toggleIsPopConfigOpen}
             handleSortBy={this.handleSortBy}
+            handleAutoGrouping={this.handleAutoGrouping}
             handleStatesSelection={this.handleStatesSelection}
+            removeStateFromGroup={this.removeStateFromGroup}
             buildChart={this.buildChart}
             
           />

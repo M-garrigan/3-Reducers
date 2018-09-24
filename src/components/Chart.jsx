@@ -1,6 +1,7 @@
 import React from 'react';
 import BarChart from './charts/BarChart/BarChart.jsx';
-import BubbleRoot from './charts/Bubbles/BubbleRoot.jsx';
+
+import Area from './charts/Area/Area.jsx';
 import Pie from '../components/charts/Pie/Pie.jsx';
 
 import '../styles/Chart.css';
@@ -33,7 +34,15 @@ export default class Chart extends React.Component {
             // data={this.props.config.data}
           />
         </div>
-      )}
+      )
+    }
+    else if (this.props.chartSelected === "area") {
+      return (
+        <div className="chart-wrapper">
+           <Area />
+        </div>
+      )
+    }
     else if (this.props.config.chart === "scatter" && this.props.config.data.length !== 0) {
       return (
         <div className={'custom_wrapper ' + this.props.backgroundTextures}>
@@ -55,26 +64,8 @@ export default class Chart extends React.Component {
            
         </div>
     )}
-    else if (this.props.config.chart === "area" && this.props.config.data.length !== 0) {
-      return (
-        <div className={'custom_wrapper ' + this.props.backgroundTextures}>
-          <div 
-            className='custom_title'
-            value={this.props.custom_title}
-          >{this.props.custom_title}</div>
-          
-        </div>
-    )}
-    else if (this.props.config.chart === "bubble" && this.props.config.data.length !== 0) {
-      return (
-        <div className={'custom_wrapper ' + this.props.backgroundTextures}>
-          <div 
-            className='custom_title'
-            value={this.props.custom_title}
-          >{this.props.custom_title}</div>
-          
-        </div>
-    )}
+    
+    
     else {
       return (
         <div className={'custom_wrapper ' + this.props.backgroundTextures}>

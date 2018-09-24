@@ -1,14 +1,17 @@
+import Area from "./src/components/charts/Area/Area";
 
 
 App
-  --Banner
-
-  --Main
-    --(Conditional)
-      --PopulationChart
-        --SubBanner 
-        --ViewArea 
-        --PopConfig 
+  |-Banner
+  |
+  |-Main (Conditional)
+     |-PopulationChart
+         |-SubBanner 
+         |-Chart 
+            |-Area
+            |-Bar
+            |-Line
+          |-PopConfig 
 
       --EconomyChart 
         --SubBanner 

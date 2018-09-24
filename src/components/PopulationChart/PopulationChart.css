@@ -1,0 +1,10 @@
+
+.population_chart_wrapper {
+  height: 80vh;
+}
+
+.pop-wrapper {
+  background: antiquewhite;
+  display: flex;
+  height: 70vh;
+}
