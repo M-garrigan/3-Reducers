@@ -11,7 +11,8 @@ const Main = (props) => {
   if (props.dataSet === 'Population') {
     return (
       <PopulationChart 
-        chartSelected={props.chartSelected} 
+        chartSelected={props.chartSelected}
+        dataSet={props.dataSet} 
         handleChartSelected={props.handleChartSelected}
       />
     )

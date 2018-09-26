@@ -2,9 +2,9 @@
 const mysql = require('mysql');
 const { dbConfig } = require('../config.js');
 
-const pool = mysql.createPool(dbConfig);
+const connection = mysql.createConnection(dbConfig);
 
-module.exports = { pool };
+module.exports = { connection };
 
 exports.retrieveNames = (callback) => {
   connection.query(

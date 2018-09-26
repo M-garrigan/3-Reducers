@@ -20,7 +20,6 @@ export default class BarChart extends Component {
       height: 500
     }
 
-    
     const maxValue = Math.max(...this.props.config.data.map(d => +d.value))
 
     const xScale = this.xScale

@@ -1,11 +1,11 @@
 
-const { retrieveListOfStates } = require('../models/statesModel.js');
+const { retrieveListOfStateNames } = require('../models/statesModel.js');
 
 module.exports = {
 
   renderStates: (req, res) => {
     
-    retrieveListOfStates( (err, results) => {
+    retrieveListOfStateNames( (err, results) => {
       if (err) {
         res.status(500).send(err);
       } else {

@@ -24,6 +24,7 @@ export default class Axis extends Component {
     d3Select(this.axisElement).call(axis)
   }
 
+  
   render() {
     return (
       <g

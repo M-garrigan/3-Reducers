@@ -1,21 +1,16 @@
 
-const { pool } = require('../../database/dbServer.js');
+const { connection } = require('../../database/dbServer.js');
 
 module.exports = {
-  retrieveListOfStates: callback => {
-    pool.getConnection( (err, connection) => {
-      if (err) callback(err);
-      else {
-        connection.query(
-          'SELECT state_name FROM usa_states', 
-          (err, results) => {
-            connection.release();
-            if (err) {callback(err);}
-            else {callback(null, results);}
-          }
-        );  
+  retrieveListOfStateNames: callback => {
+    connection.query( 
+      'SELECT state_name FROM usa_states',
+      (error, results, fields) => {
+        if (error) callback(error);
+        else {
+          callback(null, results);
+        }  
       }
-    });
+    );
   }
-
 };

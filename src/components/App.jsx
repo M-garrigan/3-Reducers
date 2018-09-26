@@ -9,7 +9,7 @@ export default class App extends React.Component {
 
   state = {
       dataSet: 'Select a Data Type',
-      chartSelected: 'area'
+      chartSelected: 'pie'
     }
 
   handleDataSetChange = (e, name) => {

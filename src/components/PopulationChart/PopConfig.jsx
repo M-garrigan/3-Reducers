@@ -35,7 +35,7 @@ export default class PopConfig extends React.Component {
             <select 
               onChange={e => {this.props.handleSortBy(e)}}
               className="pop-sort-select"
-              value={this.props.sortBy}
+              value={this.props.config.sortBy}
             >
               { 
                 ['Population', 'Density'].map( category => {
@@ -53,10 +53,10 @@ export default class PopConfig extends React.Component {
             <select 
               onChange={e => {this.props.handleAutoGrouping(e)}}
               className="pop-autoGroup-select"
-              value={this.props.autoGroup}
+              value={this.props.data.autoGroup}
             >
               { 
-                ['Top 10', 'Top 5', 'Top 5/Bottom 5', 'Bottom 5', 'Bottom 10'].map( group => {
+                ['Top 10', 'Top 5', 'Top 5/Bottom 5', 'Bottom 5', 'Bottom 10', 'All'].map( group => {
                   return (
                     <option 
                       key={group} 
@@ -73,7 +73,7 @@ export default class PopConfig extends React.Component {
             <select 
               onChange={e => {this.props.handleStatesSelection(e)}}
               className="pop-states-select"
-              value={this.props.currentState}
+              value={this.props.config.currentState}
             >
               { this.props.statesArray.map( state => {
                   return (
@@ -88,13 +88,12 @@ export default class PopConfig extends React.Component {
             </select>
 
             {
-              this.props.statesGroup.map( (state, idx) => {
+              this.props.data.statesGroup.map( (state, idx) => {
                 return (
-                  <button className="state-group-button">
+                  <button className="state-group-button" key={state}>
                     {state}
                     <FontAwesomeIcon
                       onClick={e => this.props.removeStateFromGroup(e, idx)}
-                      key={state}
                       className="remove-state"
                       color='rgb(70, 66, 68)'
                       size='1x'

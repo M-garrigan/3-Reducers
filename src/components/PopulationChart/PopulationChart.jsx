@@ -9,41 +9,52 @@ import './PopulationChart.css';
 
 export default class PopulationChart extends React.Component {
   state = {
-    sortBy: 'Population',
-    autoGroup: 'Top 10',
-    currentState: 'Alabama',
+    config: {
+      sortBy: 'Population',
+      autoGroup: 'Top 10',
+      currentState: 'Alabama',
+    },
     statesArray: [],
-    stateData: null,
-    statesGroup: []
+    data: {
+      stateData: [],
+      statesGroup: []
+    }
   }
 
   handleSortBy = event => {
+    const value = event.target.value;
     event.preventDefault();
-    this.setState({
-      sortBy: event.target.value
-    });
+    this.setState(prevState => ({
+      config: Object.assign({}, prevState.config, {sortBy: value})
+    }));
   }
 
   handleAutoGrouping = event => {
+    const value = event.target.value;
     event.preventDefault();
-    this.setState({
-      autoGroup: event.target.value
-    });
+    this.setState(prevState => ({
+      config: Object.assign({}, prevState.config, {autoGroup: value})
+    }));
   }
 
   handleStatesSelection = event => {
-    let newState = event.target.value;
-    event.preventDefault(event.target.value);
+    const value = event.target.value;
+    event.preventDefault();
     this.setState(prevState => ({
-      currentState: newState,
-      statesGroup: [...prevState.statesGroup, newState]
+      config: Object.assign({}, prevState.config, {currentState: value}),
+      data: Object.assign({}, prevState.data, {statesGroup: [...prevState.data.statesGroup, value]})
     }));
   }
 
   removeStateFromGroup = (event, idx) => {
+    const value = event.target.value;
     event.preventDefault();
     this.setState(prevState => ({
-      statesGroup: prevState.statesGroup.filter( (_, i) => i !== idx)
+      data: Object.assign(
+        {}, 
+        prevState.data, 
+        {statesGroup: prevState.data.statesGroup.filter( (_, i) => i !== idx)}
+      )
     }));
   }
 
@@ -51,22 +62,44 @@ export default class PopulationChart extends React.Component {
     event.preventDefault();
 
     axios.get(
-      `/chart/${this.state.sortBy}`, 
-      { params: { states: qs.stringify(this.state.statesSelected) } }
+      `/chart/${this.state.config.sortBy}`, 
+      { params: { states: qs.stringify(this.state.data.statesGroup) } }
     )
     .then( response => { 
-      this.setState({
-        stateData: response.data
-      });
+      console.log('buildChart returned: ', response.data);
+      this.setState(prevState => ({
+        data: Object.assign({}, prevState.data, {stateData: response.data})
+      }));
      })
     .catch(error => console.error(error));
   }
 
+  retrieveAutoGroupData = () => {
+    axios.get(
+      `/popdata/${this.props.dataSet}`,
+      { params: { 
+          popData: qs.stringify(this.state.data),
+          popConfig: qs.stringify(this.state.config)
+        } 
+      }
+    )
+      .then(response => {
+        console.log('autoGroup: ', response.data)
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
+    // load some default data from the Top 10 states if stateData === null
+    if (this.state.data.stateData.length === 0) {
+      this.retrieveAutoGroupData();
+    }
+
     // render list of states from db
     if (this.state.statesArray.length === 0) {
       axios.get('/states/render')
         .then(response => {
+          //console.log('data:', response.data);
           this.setState(prevState => ({
             statesArray: [
               ...prevState.statesArray,
@@ -84,14 +117,13 @@ export default class PopulationChart extends React.Component {
         />
         <div className="pop-wrapper">
           <Chart 
-            stateData={this.state.stateData}
+            data={this.state.data}
             chartSelected={this.props.chartSelected}
           />
           <PopConfig 
-            currentState={this.state.currentState}
-            sortBy={this.state.sortBy}
+            config={this.state.config}
             statesArray={this.state.statesArray}
-            statesGroup={this.state.statesGroup}
+            data={this.state.data}
 
             handleSortBy={this.handleSortBy}
             handleAutoGrouping={this.handleAutoGrouping}
