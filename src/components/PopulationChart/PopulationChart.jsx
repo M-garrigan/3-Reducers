@@ -117,6 +117,7 @@ export default class PopulationChart extends React.Component {
     return (
       <div className='population_chart_wrapper'>
         <SubBanner 
+          chartSelected={this.props.chartSelected}
           handleChartSelected={this.props.handleChartSelected}
         />
         <div className="pop-wrapper">

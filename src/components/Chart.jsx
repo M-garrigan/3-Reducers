@@ -17,9 +17,10 @@ export default class Chart extends React.Component {
             className='custom_title'
             value={this.props.custom_title}
           >{this.props.custom_title}</div>
-          <BarChart 
+          BarChart
+          {/* <BarChart 
             config={this.props.config}
-          />
+          /> */}
         </div>
       )}
     else if (this.props.chartSelected === "pie") {

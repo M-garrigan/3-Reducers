@@ -1,6 +1,5 @@
 
 .subBanner-wrapper {
-  background: #666;
   height: 5rem;
 }
 
@@ -11,8 +10,16 @@
   justify-content: space-around;
 }
 
-.sub-icon {
+.sub-icon-active-false {
   color: steelblue;
+}
+
+.sub-icon-active-false:hover {
+  color: rgb(228, 155, 20);
+}
+
+.sub-icon-active-true svg {
+  color: rgb(228, 155, 20);
 }
 
 .save-chart {

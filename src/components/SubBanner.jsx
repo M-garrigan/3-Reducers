@@ -11,7 +11,7 @@ const SubBanner = (props) => {
       <div className="icon-group">
 
         <span 
-          className="sub-icon" 
+          className={`sub-icon-active-${props.chartSelected === 'bar' ? true : false}`}
           onClick={e => props.handleChartSelected(e, 'bar')}
         >
           <FontAwesomeIcon
@@ -20,7 +20,7 @@ const SubBanner = (props) => {
           />
         </span>
 
-        <span className="sub-icon"
+        <span className={`sub-icon-active-${props.chartSelected === 'pie' ? true : false}`}
           onClick={e => props.handleChartSelected(e, 'pie')}
         >
           <FontAwesomeIcon
@@ -29,7 +29,7 @@ const SubBanner = (props) => {
           />
         </span>
 
-        <span className="sub-icon"
+        <span className={`sub-icon-active-${props.chartSelected === 'area' ? true : false}`}
           onClick={e => props.handleChartSelected(e, 'area')}
         >
           <FontAwesomeIcon
@@ -38,7 +38,7 @@ const SubBanner = (props) => {
           />
         </span>
 
-          <span className="sub-icon"
+          <span className={`sub-icon-active-${props.chartSelected === 'graph' ? true : false}`}
             onClick={e => props.handleChartSelected(e, 'graph')}
           >
             <FontAwesomeIcon
@@ -47,7 +47,7 @@ const SubBanner = (props) => {
             />
           </span>
 
-          <span className="sub-icon"
+          <span className={`sub-icon-active-${props.chartSelected === 'line' ? true : false}`}
             onClick={e => props.handleChartSelected(e, 'line')}
           >
             <FontAwesomeIcon
