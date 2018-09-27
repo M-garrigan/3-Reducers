@@ -21,6 +21,27 @@ export default class PopulationChart extends React.Component {
     }
   }
 
+  componentDidMount () {
+    // render list of states from db
+    if (this.state.statesArray.length === 0) {
+      axios.get('/states/render')
+        .then(response => {
+          //console.log('data:', response.data);
+          this.setState(prevState => ({
+            statesArray: [
+              ...response.data
+            ]
+          }))
+        })
+        .catch(error => console.error('Error retrieving list of available states:', error));
+    }
+
+    // load some default data from the Top 10 states if stateData === null
+    if (this.state.data.stateData.length === 0) {
+      this.retrieveAutoGroupData();
+    }
+  }
+
   handleSortBy = event => {
     const value = event.target.value;
     event.preventDefault();
@@ -66,13 +87,14 @@ export default class PopulationChart extends React.Component {
       { params: { states: qs.stringify(this.state.data.statesGroup) } }
     )
     .then( response => { 
-      console.log('buildChart returned: ', response.data);
+      //console.log('buildChart returned: ', response.data);
       this.setState(prevState => ({
         data: Object.assign({}, prevState.data, {stateData: response.data})
       }));
      })
     .catch(error => console.error(error));
   }
+
 
   retrieveAutoGroupData = () => {
     axios.get(
@@ -84,32 +106,14 @@ export default class PopulationChart extends React.Component {
       }
     )
       .then(response => {
-        console.log('autoGroup: ', response.data)
+        this.setState(prevState => ({
+          data: Object.assign({}, prevState.data, {stateData: response.data})
+        }));
       })
       .catch(err => console.error(err));
   }
 
   render() {
-    // load some default data from the Top 10 states if stateData === null
-    if (this.state.data.stateData.length === 0) {
-      this.retrieveAutoGroupData();
-    }
-
-    // render list of states from db
-    if (this.state.statesArray.length === 0) {
-      axios.get('/states/render')
-        .then(response => {
-          //console.log('data:', response.data);
-          this.setState(prevState => ({
-            statesArray: [
-              ...prevState.statesArray,
-              ...response.data
-            ]
-          }))
-        })
-        .catch(error => console.error('Error retrieving list of available states:', error));
-    }
-    
     return (
       <div className='population_chart_wrapper'>
         <SubBanner 

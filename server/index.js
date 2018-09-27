@@ -5,6 +5,8 @@ const axios = require('axios');
 
 const stateRoutes = require('./routes/stateRoutes.js');
 const popDataRoutes = require('./routes/popDataRoutes.js');
+const seedState = require('./routes/seedRoutes.js');
+//console.log('seedState:', seedState)
 
 const app = express();
 
@@ -14,6 +16,7 @@ app.use(bodyParser.json());
 
 app.use('/states', stateRoutes);
 app.use('/popdata', popDataRoutes);
+app.use('/seed', seedState);
 
 app.get('/', (req, res) => {
   res.send();

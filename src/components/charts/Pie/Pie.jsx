@@ -1,54 +1,70 @@
 import React from 'react';
-import {scaleOrdinal} from 'd3-scale';
+
 import {pie, arc} from 'd3-shape';
+import { schemeCategory10 } from 'd3-scale-chromatic';
+import Dimensions from 'react-dimensions';
 
-const Pie = ({data}) => {
+class Pie extends React.Component {
 
-  const width = 500;
-  const height = 500;
-  const radius = Math.min(width, height) / 2;
+  render() {
+    const {data, containerHeight, containerWidth} = this.props;
+    
+    console.log('dimensions', containerWidth, containerHeight);
 
-  const color = scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+    // reduce data to array of names & array of values
+    const stateNames = data.stateData.map( state => {
+      return state.state_name;
+    });
+    const stateValues = data.stateData.map( state => {
+      return state['2016_pop'];
+    });
 
-  const dataArc = arc()
-    .outerRadius(radius - 10)
-    .innerRadius(0);
+    const margin = 100;
+    const minDimension = Math.min(containerHeight, containerWidth) - margin;
+    const radius = minDimension / 2;
+    const color = schemeCategory10;
 
-  const labelArc = arc()
-    .outerRadius(radius - 40)
-    .innerRadius(radius - 40);
+    const dataArc = arc()
+      .outerRadius(radius - 10)
+      .innerRadius(20);
 
-  const pieChart = pie()
-    .sort(null)
-    .value(d => d.value);
+    const labelArc = arc()
+      .outerRadius(radius - 40)
+      .innerRadius(radius - 40);
 
-  return (
-    <svg width={width} height={height}>
-      <g transform={`translate(${width/2},${height/2})`}>
-        {
-          pieChart(data).map( (d, idx) => {
-            return (
-              <g 
-                key={d.key}
-                className="arc"
-              >
-                <path 
-                  d={dataArc(d)}
-                  fill={color(d.data.name)}
-                />
-                <text 
-                  transform={`translate(${labelArc.centroid(d)})`}
-                  dy=".5rem"
+    const pieChart = pie()
+      .sort(null)
+      .value(d => d);
+
+    return (
+      <svg width={minDimension} height={minDimension}>
+        <g transform={`translate(${minDimension/2},${minDimension/2})`}>
+          {
+            pieChart(stateValues).map( (d, idx) => {
+              //console.log('d:', d)
+              return (
+                <g 
+                  key={d + stateNames[idx]}
+                  className="arc"
                 >
-                  {data[idx].name}
-                </text>
-              </g>
-            )
-          })
-        }
-      </g>
-    </svg>
-  )
+                  <path 
+                    d={dataArc(d)}
+                    fill={color[idx]}
+                  />
+                  <text 
+                    transform={`translate(${labelArc.centroid(d)})`}
+                    dy=".5rem"
+                  >
+                    {stateNames[idx]}
+                  </text>
+                </g>
+              )
+            })
+          }
+        </g>
+      </svg>
+    )
+  }
 };
 
-export default Pie;
+export default Dimensions()(Pie);

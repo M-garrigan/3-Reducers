@@ -26,9 +26,9 @@ export default class Chart extends React.Component {
       
       return (
         <div className="chart-wrapper">
-          {/* <Pie 
-            data={this.props.stateData}
-          /> */}
+          <Pie 
+            data={this.props.data}
+          />
         </div>
       )
     }
