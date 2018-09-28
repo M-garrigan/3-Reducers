@@ -3,6 +3,7 @@
   background: white;
   flex: 1;
   height: 82vh;
+  width: calc(100vw - 200px);
 }
 .Squares {
   background-color: #00138f;

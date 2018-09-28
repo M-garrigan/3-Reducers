@@ -2,6 +2,7 @@ import React from 'react';
 
 import BarChart from './charts/BarChart/BarChart.jsx';
 import Area from './charts/Area/Area.jsx';
+import Line from '../components/charts/Line/Line.jsx';
 import Pie from '../components/charts/Pie/Pie.jsx';
 
 import '../styles/Chart.css';
@@ -12,11 +13,7 @@ export default class Chart extends React.Component {
 
     if (this.props.chartSelected === "bar") {
       return (
-        <div className={'custom_wrapper ' + this.props.backgroundTextures}>
-          <div 
-            className='custom_title'
-            value={this.props.custom_title}
-          >{this.props.custom_title}</div>
+        <div className="chart-wrapper">
           BarChart
           {/* <BarChart 
             config={this.props.config}
@@ -42,7 +39,7 @@ export default class Chart extends React.Component {
         </div>
       )
     }
-    else if (this.props.config.chart === "scatter" && this.props.config.data.length !== 0) {
+    else if (this.props.chartSelected === 'graph') {
       return (
         <div className={'custom_wrapper ' + this.props.backgroundTextures}>
           <div 
@@ -52,15 +49,12 @@ export default class Chart extends React.Component {
           
         </div>
     )}
-    else if (this.props.config.chart === "line" && this.props.config.data.length !== 0) {
+    else if (this.props.chartSelected === 'line') {
       return (
-        <div className={'custom_wrapper ' + this.props.backgroundTextures}>
-          <div 
-            className='custom_title'
-            value={this.props.custom_title}
-          >{this.props.custom_title}</div>
-          {/* <div className='scatterplot_flex_wrapper'> */}
-           
+        <div className="chart-wrapper">
+           <Line 
+            data={this.props.data}
+           />
         </div>
     )}
     
