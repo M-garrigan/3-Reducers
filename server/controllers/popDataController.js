@@ -16,7 +16,40 @@ module.exports = {
       // query db for top 10 states (in order)
       autoGroup('Top 10', (err, result) => {
         if (err) res.send(err);
-        else res.send(result);
+        else {
+          // format data
+          console.log('ctrl: ', result)
+          let formatResult = result.map( (x,i) => {
+            let pop = [
+              x['2010_pop'], 
+              x['2011_pop'], 
+              x['2012_pop'],
+              x['2013_pop'], 
+              x['2014_pop'], 
+              x['2015_pop'],   
+              x['2016_pop']
+            ];
+            let den = [
+              x['2010_den'], 
+              x['2011_den'], 
+              x['2012_den'],
+              x['2013_den'], 
+              x['2014_den'], 
+              x['2015_den'],   
+              x['2016_den']
+            ];
+
+            return {
+              idusa_states: x.idusa_states,
+              state_id: x.state_id,
+              state_name: x.state_name,
+              den: den,
+              pop: pop
+            }
+          });
+          
+          res.send(formatResult);
+        }
       })
     }
   },

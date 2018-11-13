@@ -1,8 +1,10 @@
 import React from 'react';
+import PieLegend from './PieLegend.jsx';
 
 import {pie, arc} from 'd3-shape';
 import { schemeCategory10 } from 'd3-scale-chromatic';
 import Dimensions from 'react-dimensions';
+import './Pie.css';
 
 class Pie extends React.Component {
 
@@ -12,12 +14,11 @@ class Pie extends React.Component {
     console.log('dimensions', containerWidth, containerHeight);
 
     // reduce data to array of names & array of values
-    const stateNames = data.stateData.map( state => {
-      return state.state_name;
-    });
-    const stateValues = data.stateData.map( state => {
-      return state['2016_pop'];
-    });
+    const stateNames = data.stateData.map( state => state.state_name );
+
+    const stateValues = data.stateData.map( 
+      state => state.pop[state.den.length - 1]
+    );
 
     const margin = 100;
     const minDimension = Math.min(containerHeight, containerWidth) - margin;
@@ -37,32 +38,44 @@ class Pie extends React.Component {
       .value(d => d);
 
     return (
-      <svg width={minDimension} height={minDimension}>
-        <g transform={`translate(${minDimension/2},${minDimension/2})`}>
-          {
-            pieChart(stateValues).map( (d, idx) => {
-              //console.log('d:', d)
-              return (
-                <g 
-                  key={d + stateNames[idx]}
-                  className="arc"
-                >
-                  <path 
-                    d={dataArc(d)}
-                    fill={color[idx]}
-                  />
-                  <text 
-                    transform={`translate(${labelArc.centroid(d)})`}
-                    dy=".5rem"
+      <div className="pie-inner-layout">
+        <svg width={minDimension} height={minDimension}>
+          <g transform={`translate(${minDimension/2},${minDimension/2})`}>
+            {
+              pieChart(stateValues).map( (d, idx) => {
+                return (
+                  <g 
+                    key={d + stateNames[idx]}
+                    className="arc"
                   >
-                    {stateNames[idx]}
-                  </text>
-                </g>
-              )
-            })
-          }
-        </g>
-      </svg>
+                    <path 
+                      d={dataArc(d)}
+                      fill={color[idx]}
+                    />
+                    <text 
+                      transform={`translate(${labelArc.centroid(d)})`}
+                      dy=".5rem"
+                    >
+                      {
+                        Math.round(
+                          (stateValues[idx] /
+                          stateValues.reduce(
+                            (accum, curr) => { return  accum + curr }
+                          ) * 100
+                        )) + '%'
+                      }
+                    </text>
+                  </g>
+                )
+              })
+            }
+          </g>
+        </svg>
+        <PieLegend 
+          stateNames={stateNames}
+          stateValues={stateValues}
+        />
+        </div>
     )
   }
 };

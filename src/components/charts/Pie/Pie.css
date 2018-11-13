@@ -1,0 +1,25 @@
+
+/* Pie.jsx */
+.pie-inner-layout {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* Legend Start */
+.pielegend-wrapper {
+  border: 1px dashed gray;
+}
+
+.pielegend-item {
+  margin: 10px auto;
+}
+
+.pielegend-statename {
+  font-size: 2rem;
+  padding: 0 10px;
+}
+
+.pielegend-statevalue {
+  font-size: 2rem;
+  padding: 0 10px;
+}
