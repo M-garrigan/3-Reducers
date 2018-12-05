@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BarChart from './charts/BarChart/BarChart.jsx';
+import Bar from './charts/Bar/Bar.jsx';
 import Area from './charts/Area/Area.jsx';
 import Line from '../components/charts/Line/Line.jsx';
 import Pie from '../components/charts/Pie/Pie.jsx';
@@ -15,9 +15,10 @@ export default class Chart extends React.Component {
       return (
         <div className="chart-wrapper">
           BarChart
-          {/* <BarChart 
-            config={this.props.config}
-          /> */}
+          <Bar 
+            data={this.props.data}
+            // config={this.props.config}
+          />
         </div>
       )}
     else if (this.props.chartSelected === "pie") {

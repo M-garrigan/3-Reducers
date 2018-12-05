@@ -8,6 +8,7 @@ import './Pie.css';
 
 class Pie extends React.Component {
 
+
   render() {
     const {data, containerHeight, containerWidth} = this.props;
     
