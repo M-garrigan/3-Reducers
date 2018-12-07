@@ -14,7 +14,6 @@ export default class Chart extends React.Component {
     if (this.props.chartSelected === "bar") {
       return (
         <div className="chart-wrapper">
-          BarChart
           <Bar 
             data={this.props.data}
             // config={this.props.config}
@@ -35,7 +34,7 @@ export default class Chart extends React.Component {
       return (
         <div className="chart-wrapper">
           <Area 
-            stateData={this.props.data}
+            data={this.props.data}
           />
         </div>
       )

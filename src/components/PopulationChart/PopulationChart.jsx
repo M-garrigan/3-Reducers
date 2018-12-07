@@ -26,7 +26,7 @@ export default class PopulationChart extends React.Component {
     if (this.state.statesArray.length === 0) {
       axios.get('/states/render')
         .then(response => {
-          console.log('data:', response.data);
+          // console.log('data:', response.data);
           this.setState(prevState => ({
             statesArray: [
               ...response.data
