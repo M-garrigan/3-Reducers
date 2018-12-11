@@ -16,7 +16,6 @@ export default class Chart extends React.Component {
         <div className="chart-wrapper">
           <Bar 
             data={this.props.data}
-            // config={this.props.config}
           />
         </div>
       )}
