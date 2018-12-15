@@ -42,7 +42,7 @@ const Main = (props) => {
           <h2 className="splash-text">
             Visualizing Census.gov Data
           </h2>
-          {/* <button onClick={e => seed(e, 'Puerto Rico')}>seed</button> */}
+          {/* <button onClick={e => seed(e, 'Wyoming')}>seed</button> */}
         </div>
       )
   }

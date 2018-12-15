@@ -6,13 +6,11 @@ const axios = require('axios');
 const stateRoutes = require('./routes/stateRoutes.js');
 const popDataRoutes = require('./routes/popDataRoutes.js');
 const seedState = require('./routes/seedRoutes.js');
-//console.log('seedState:', seedState)
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/../dist')));
 app.use(bodyParser.json());
-
 
 app.use('/states', stateRoutes);
 app.use('/popdata', popDataRoutes);
@@ -25,4 +23,4 @@ app.get('/', (req, res) => {
 
 const port = process.env.PORT || 8080;
 
-app.listen(port, () => console.log('listening on port 8080...'));
+app.listen(port, () => console.log(`listening on port ${port}...`));

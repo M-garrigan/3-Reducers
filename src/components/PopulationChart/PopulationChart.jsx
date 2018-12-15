@@ -80,23 +80,28 @@ export default class PopulationChart extends React.Component {
   }
 
   buildChart = event => {
+    console.log('???????????????', this.state.config.sortBy)
     event.preventDefault();
 
-    axios.get(
-      `/chart/${this.state.config.sortBy}`, 
-      { params: { states: qs.stringify(this.state.data.statesGroup) } }
-    )
-    .then( response => { 
-      //console.log('buildChart returned: ', response.data);
-      this.setState(prevState => ({
-        data: Object.assign({}, prevState.data, {stateData: response.data})
-      }));
-     })
-    .catch(error => console.error(error));
+    if (this.state.config.sortBy === 'Population' && this.state.config.autoGroup === 'Top 10') {
+      console.log('helllllo')
+      axios.get(
+        `/states/population_top10`, 
+        { params: { states: qs.stringify(this.state.data.statesGroup) } }
+      )
+      .then( response => { 
+        console.log('buildChart returned: ', response.data);
+        this.setState(prevState => ({
+          data: Object.assign({}, prevState.data, {stateData: response.data})
+        }));
+       })
+      .catch(error => console.error(error));
+    }
   }
 
 
   retrieveAutoGroupData = () => {
+    
     axios.get(
       `/popdata/${this.props.dataSet}`,
       { params: { 

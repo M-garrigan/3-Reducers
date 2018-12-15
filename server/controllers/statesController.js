@@ -3,7 +3,7 @@ const { retrieveListOfStateNames } = require('../models/statesModel.js');
 
 module.exports = {
 
-  renderStates: (req, res) => {
+  defaultListOfStates: (req, res) => {
     
     retrieveListOfStateNames( (err, results) => {
       if (err) {

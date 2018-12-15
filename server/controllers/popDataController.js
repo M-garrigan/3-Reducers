@@ -20,6 +20,7 @@ module.exports = {
           // format data
           console.log('ctrl: ', result)
           let formatResult = result.map( (x,i) => {
+            console.log('x: ', x)
             let pop = [
               x['2010_pop'], 
               x['2011_pop'], 
