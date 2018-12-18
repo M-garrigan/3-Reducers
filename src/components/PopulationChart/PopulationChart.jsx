@@ -27,7 +27,6 @@ export default class PopulationChart extends React.Component {
     if (this.state.statesArray.length === 0) {
       axios.get('/states/render')
         .then(response => {
-          // console.log('data:', response.data);
           this.setState(prevState => ({
             statesArray: [
               ...response.data
@@ -39,7 +38,8 @@ export default class PopulationChart extends React.Component {
 
     // load some default data from the Top 10 states if stateData === null
     if (this.state.data.stateData.length === 0) {
-      this.retrieveAutoGroupData();
+      this.buildChart();
+      //this.retrieveAutoGroupData();
     }
   }
 
@@ -81,52 +81,33 @@ export default class PopulationChart extends React.Component {
   }
 
   buildChart = event => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
+    
+    // an object to map multiple react state values into a string
+    const templateStrings = {
+      'PopulationTop 10': 'population_top10',
+      'PopulationTop 5': 'population_top5',
+      'PopulationBottom 10': 'population_bottom10',
+      'PopulationBottom 5': 'population_bottom5'
+    };
 
-    if (this.state.config.sortBy === 'Population' && this.state.config.autoGroup === 'Top 10') {
-      
-      axios.get('/states/population_top10')
-        .then( response => { 
-          
-          this.setState(prevState => ({
-            data: Object.assign({}, prevState.data, {stateData: formatPopulationData(response.data)})
-          }));
-        })
-        .catch(error => console.error(error));
-    }
-    else if (this.state.config.sortBy === 'Population' && this.state.config.autoGroup === 'Top 5') {
-      
-      axios.get('/states/population_top5')
-        .then( response => { 
-          
-          this.setState(prevState => ({
-            data: Object.assign({}, prevState.data, {stateData: formatPopulationData(response.data)})
-          }));
-        })
-        .catch(error => console.error(error));
-    }
-    else if (this.state.config.sortBy === 'Population' && this.state.config.autoGroup === 'Bottom 10') {
-      
-      axios.get('/states/population_bottom10')
-        .then( response => { 
-          
-          this.setState(prevState => ({
-            data: Object.assign({}, prevState.data, {stateData: formatPopulationData(response.data)})
-          }));
-        })
-        .catch(error => console.error(error));
-    }
-    else if (this.state.config.sortBy === 'Population' && this.state.config.autoGroup === 'Bottom 5') {
-      
-      axios.get('/states/population_bottom5')
-        .then( response => { 
-          
-          this.setState(prevState => ({
-            data: Object.assign({}, prevState.data, {stateData: formatPopulationData(response.data)})
-          }));
-        })
-        .catch(error => console.error(error));
-    }
+    let tString = templateStrings[
+      `${this.state.config.sortBy}${this.state.config.autoGroup}`
+    ];
+
+    axios.get(`/states/${tString}`)
+      .then( response => { 
+        this.setState(prevState => ({
+          data: Object.assign(
+            {}, 
+            prevState.data, 
+            {stateData: formatPopulationData(response.data)}
+          )
+        }));
+      })
+      .catch(error => console.error(error));
   }
 
 
