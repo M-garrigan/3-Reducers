@@ -89,7 +89,11 @@ export default class PopulationChart extends React.Component {
       'PopulationTop 10': 'population_top10',
       'PopulationTop 5': 'population_top5',
       'PopulationBottom 10': 'population_bottom10',
-      'PopulationBottom 5': 'population_bottom5'
+      'PopulationBottom 5': 'population_bottom5',
+      'DensityTop 10': 'density_top10',
+      'DensityTop 5': 'density_top5',
+      'DensityBottom 10': 'density_bottom10',
+      'DensityBottom 5': 'density_bottom5'
     };
 
     let tString = templateStrings[
