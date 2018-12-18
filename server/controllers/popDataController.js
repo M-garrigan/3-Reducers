@@ -9,7 +9,7 @@ module.exports = {
     let popConfig = qs.parse(req.query.popConfig);
     let popData = qs.parse(req.query.popData);
 
-    console.log('ctrl:', popConfig, popData);
+    
 
     // nothing has been selected, so we are retrieving the top10 states data
     if (JSON.stringify(popData) === '{}') {
@@ -18,9 +18,9 @@ module.exports = {
         if (err) res.send(err);
         else {
           // format data
-          console.log('ctrl: ', result)
+          
           let formatResult = result.map( (x,i) => {
-            console.log('x: ', x)
+            
             let pop = [
               x['2010_pop'], 
               x['2011_pop'], 

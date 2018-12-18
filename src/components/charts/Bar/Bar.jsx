@@ -8,9 +8,7 @@ import Dimensions from 'react-dimensions';
 import './Bar.css';
 
 const Bar = ({data, containerHeight, containerWidth}) => {
-  console.log('bar data: ', data);
-  console.log('color: ', schemeSet3);
-
+  
   const margin = 80; 
   const yAxisTickRange = ['5 M', '10 M', '15 M', '20 M', '25 M', '30 M', '35 M', '40 M'];
 

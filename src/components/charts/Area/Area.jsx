@@ -33,19 +33,8 @@ class Area extends React.Component {
       .y0( d => yScale(0))
       .y1( (d, idx) => yScale(d))
       .curve(curveLinear)
-    
-    // const ord = scaleOrdinal()
-    //   .domain([0,1,2,3,4,5,6])
-    //   .range(years);
-
-    // console.log('ord:', ord(0))
-    // console.log('ord:', ord(2))
-    // console.log('ord:', ord(6))
 
     const blues = schemeBlues[7];
-    console.log('blue', blues);
-
- 
 
     return (
       <div className="area-wrapper">
@@ -61,7 +50,6 @@ class Area extends React.Component {
 
             {
               data.stateData.map( (d, idx) => {
-                console.log('d: ', d)
                 return (
                   <path
                     key={d.pop}

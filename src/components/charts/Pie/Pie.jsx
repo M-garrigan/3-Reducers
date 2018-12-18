@@ -8,11 +8,8 @@ import './Pie.css';
 
 class Pie extends React.Component {
 
-
   render() {
     const {data, containerHeight, containerWidth} = this.props;
-    
-    console.log('dimensions', containerWidth, containerHeight);
 
     // reduce data to array of names & array of values
     const stateNames = data.stateData.map( state => state.state_name );

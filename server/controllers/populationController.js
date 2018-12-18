@@ -1,4 +1,9 @@
-const { retrieveTop10Population } = require('../models/populationModel.js');
+const { 
+  retrieveTop10Population,
+  retrieveTop5Population,
+  retrieveBottom10Population,
+  retrieveBottom5Population
+ } = require('../models/populationModel.js');
 
 module.exports = {
 
@@ -7,9 +12,38 @@ module.exports = {
       if (err) {
         res.status(500).send(err);
       } else {
-        console.log('pop top 10 contr:', results);
+        res.status(200).send(results);
       }
     });
-  
+  },
+
+  populationTop5: (req, res) => {
+    retrieveTop5Population( (err, results) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(results);
+      }
+    });
+  },
+
+  populationBottom10: (req, res) => {
+    retrieveBottom10Population( (err, results) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(results);
+      }
+    });
+  },
+
+  populationBottom5: (req, res) => {
+    retrieveBottom5Population( (err, results) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(results);
+      }
+    });
   }
 };
