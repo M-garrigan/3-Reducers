@@ -39,7 +39,6 @@ export default class PopulationChart extends React.Component {
     // load some default data from the Top 10 states if stateData === null
     if (this.state.data.stateData.length === 0) {
       this.buildChart();
-      //this.retrieveAutoGroupData();
     }
   }
 
@@ -108,25 +107,6 @@ export default class PopulationChart extends React.Component {
         }));
       })
       .catch(error => console.error(error));
-  }
-
-
-  retrieveAutoGroupData = () => {
-    
-    axios.get(
-      `/popdata/${this.props.dataSet}`,
-      { params: { 
-          popData: qs.stringify(this.state.data),
-          popConfig: qs.stringify(this.state.config)
-        } 
-      }
-    )
-      .then(response => {
-        this.setState(prevState => ({
-          data: Object.assign({}, prevState.data, {stateData: response.data})
-        }));
-      })
-      .catch(err => console.error(err));
   }
 
   render() {
