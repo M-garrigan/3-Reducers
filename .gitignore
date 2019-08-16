@@ -3,3 +3,5 @@ helpers/config.js
 database/testdata.js
 dist/bundle.js
 config.js
+
+.vscode
