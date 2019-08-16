@@ -1,6 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+// const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// {
+//   "presets": [
+//     ["env", {"modules": false}],
+//     "react", "stage-0", "airbnb"
+//   ]
+// }
 
 module.exports = {
   target: 'node',
@@ -9,16 +17,27 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'style.css'
+    })
+  ],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader : 'babel-loader',
-        // use: 'babel-loader',
-        options: {
-          presets: ['react', 'env', 'stage-0']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
+        // loader : 'babel-loader',
+        // // use: 'babel-loader',
+        // options: {
+        //   presets: ['react', 'env', 'stage-0']
+        // }
       },
       {
         test: /\.css$/,
@@ -78,8 +97,8 @@ module.exports = {
   devServer: {
     contentBase: './dist'
   },
-  plugins: [
-    new LodashModuleReplacementPlugin,
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/)
-  ]
+  // plugins: [
+  //   new LodashModuleReplacementPlugin,
+  //   new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/)
+  // ]
 }
