@@ -1,0 +1,56 @@
+
+.nav-wrapper {
+  align-items: center;
+  background: #444;
+  display: flex;
+  /* height: 10vh; */
+  justify-content: space-evenly;
+}
+
+.nav-logo{
+  color: goldenrod;
+  font-size: 4rem;
+}
+
+
+
+/* Start Icon Cluster */
+.nav-icon-group {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-icon-wrap {
+  align-items: center;
+  background: white;
+  border: 3px solid goldenrod;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.nav-icon-wrap-focused {
+  align-items: center;
+  background: white;
+  border: 3px solid red;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.nav-icon-wrap p {
+  color: #333;
+  font-size: 2rem;
+}
+.nav-icon-wrap-focused p {
+  color: #333;
+  font-size: 2rem;
+}
+
+.icon-span {
+  align-items: center;
+  background: rgb(95, 150, 160);
+  color: goldenrod;
+  margin: 0 10px;
+}
