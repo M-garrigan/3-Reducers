@@ -7,12 +7,13 @@ import '../styles/App.css';
 
 export default props => {
 
-  const [category, setCategory] = useState('Streamer'); // 'Streamer' | 'Game'
+  const [category, setCategory] = useState('Streamers'); // 'Streamers' | 'Games'
     
   return (
     <div className='main_wrapper'>
       <NavBar
-        
+        category={category}
+        setCategory={setCategory}
       />
       <Main 
         
