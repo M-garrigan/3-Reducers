@@ -1,30 +1,29 @@
 
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faDonate, faIndustry } from '@fortawesome/free-solid-svg-icons';
-import '../styles/Banner.css';
+import { faUsers, faGamepad } from '@fortawesome/free-solid-svg-icons';
+import '../styles/NavBar.css';
 
-const NavBar = props => {
+export default ({category, setCategory}) => {
 
   return (
-    <div className='banner-wrapper'>
+    <div className='nav-wrapper'>
 
-      <div className="text-left">
-        <h2 
-          className="banner-logo"
-          
-        >VSON</h2>
-        <h3 className="data-type">            
-          
-        </h3>
-      </div>
+      <h2 className="nav-logo">
+        Watch-Me
+      </h2>
 
-      <div className="icons-right">
+      <div className="nav-icon-group">
+
         <div 
-          className="pop-category data-category"
-          value='Population'
-          
+          className={
+            category === 'Streamers'
+              ? "nav-icon-wrap-focused"
+              : "nav-icon-wrap"
+          }
+          onClick={() => setCategory('Streamers')}
         >
+          <p>Streamers</p>
           <span className="icon-span">
             <FontAwesomeIcon
               size='4x'
@@ -34,27 +33,18 @@ const NavBar = props => {
         </div>
 
         <div 
-          className="econ-category data-category"
-          value='Economy'
-          
+          className={
+            category === 'Games'
+              ? "nav-icon-wrap-focused"
+              : "nav-icon-wrap"
+          }
+          onClick={() => setCategory('Games')}
         >
+          <p>Games</p>
           <span className="icon-span">
             <FontAwesomeIcon
               size='4x'
-              icon={faDonate}
-            />
-          </span>
-        </div>
-
-        <div 
-          className="manuf-category data-category"
-          value='Manufacturing'
-          
-        >   
-          <span className="icon-span">
-            <FontAwesomeIcon
-              size='4x'
-              icon={faIndustry}
+              icon={faGamepad}
             />
           </span>
         </div>
@@ -63,5 +53,3 @@ const NavBar = props => {
     </div>
   )
 }
-
-export default NavBar;
