@@ -8,9 +8,7 @@ export default props => {
     
   return (
     <div className="splash-wrapper">
-      <h2 className="splash-text">
-        Visualizing Census.gov Data
-      </h2>
+      
     </div>
   )
 }
