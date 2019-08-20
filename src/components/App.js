@@ -10,7 +10,7 @@ export default props => {
   const [category, setCategory] = useState('Streamers'); // 'Streamers' | 'Games'
     
   return (
-    <div className='main_wrapper'>
+    <div className='app-wrapper'>
       <NavBar
         category={category}
         setCategory={setCategory}
