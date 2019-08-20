@@ -1,0 +1,25 @@
+
+.rt-wrapper {
+  /* background: white; */
+  margin: 2rem auto;
+  width: 95vw;
+}
+
+.rt-info-banner-wrapper {
+  background: rgba(238, 72, 72, 0.75);
+  width: 100%;
+}
+
+/* ==============
+     RTChart
+=============== */
+.rtchart-svg {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.rtchart-button-ctrl-wrapper {
+  background: rgba(238, 72, 72, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
