@@ -16,7 +16,7 @@ export default props => {
         setCategory={setCategory}
       />
       <Main 
-        
+        category={category}
       />
     </div>
   );
