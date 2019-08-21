@@ -1,55 +1,67 @@
 
 
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect, useCallback } from 'react';
+import { axisBottom, axisTop } from 'd3-axis';
+import { scaleOrdinal, scaleTime } from 'd3-scale';
+import { select } from 'd3-selection';
 
 import '../styles/Main.css';
 
 export default props => {
+  const svgWidth = Math.round(props.dimensions.width * 0.95);
+  const svgHeight = Math.round(svgWidth * 0.5);
 
-  const width = Math.round(props.dimensions.width * 0.95);
-  const svgHeight = Math.round(width * 0.5);
-  const buttonGroupHeight = Math.round(width * 0.05);
+  const marginTop = Math.round(svgHeight * 0.05);
+  const marginLeft = Math.round(svgWidth * 0.02);
 
-  const [timeScale, setTimeScale] = useState(10);
+  const [now, setNow] = useState(Date.now())
+  
+
+
+  // time
+  let timeScale = scaleTime()
+    .domain([now - 1 * 55 * 60 * 1000, now])
+    .range([0, svgWidth - (marginLeft * 2)])
+
+  let timer;
+  useLayoutEffect( () => {
+    timer = setInterval(
+      () => {
+        setNow(Date.now())
+        console.log('time scale called');
+        timeScale = scaleTime()
+          .domain([now - 1 * 55 * 60 * 1000, now])
+          .range([0, svgWidth - (marginLeft * 2)]);
+
+      }, 
+      2000
+    );
+
+    return () => { 
+      clearInterval(timer); 
+    }
+  }, [now] ); 
+
     
   return (
-    <div className="rtchart-wrapper">
+    <svg
+      className="rtchart-svg"
+      height={svgHeight}
+      width={svgWidth}
+    >
+      <g transform={`translate(${marginLeft},${marginTop})`}>
+        <g
+          className="rtchart-bottom-axis" 
+          transform={`translate(0,${svgHeight - (marginTop * 2)})`}
+          ref={node => select(node).call(axisBottom(timeScale))} 
+        />
+        <g
+          className="rtchart-top-axis" 
+          transform={`translate(0, 0)`}
+          ref={node => select(node).call(axisTop(timeScale))} 
+        />
 
-      <svg
-        className="rtchart-svg"
-        height={svgHeight}
-        width={width}
-      ></svg>
-
-      <div 
-        className="rtchart-button-ctrl-wrapper"
-        style={{height: buttonGroupHeight}}
-        // height={buttonGroupHeight}
-      >
-          <p>Adjust Time Scale</p>
-          <button 
-            className={timeScale === 5
-              ? "rtchart-button-active" 
-              : "rtchart-button"
-            }
-            onClick={ () => setTimeScale(5) }
-          >5 Min</button>
-          <button 
-            className={timeScale === 10
-              ? "rtchart-button-active" 
-              : "rtchart-button"
-            }
-            onClick={ () => setTimeScale(10) }
-          >10 Min</button>
-          <button 
-            className={timeScale === 30
-              ? "rtchart-button-active" 
-              : "rtchart-button"
-            }
-            onClick={ () => setTimeScale(30) }
-          >30 Min</button>
-        </div>
-
-    </div>
+      </g>
+    </svg>
   )
 }
