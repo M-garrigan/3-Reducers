@@ -46,6 +46,7 @@ export default props => {
   return (
     <div className="main-wrapper" ref={wrapRef}>
       <RealTime 
+        category={props.category}
         dimensions={dimensions}
       />
       <Geo 
