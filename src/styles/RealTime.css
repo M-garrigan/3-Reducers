@@ -1,12 +1,30 @@
 
+/* ==============
+    RealTime
+=============== */
 .rt-wrapper {
-  /* background: white; */
+  display: flex;
+  flex-direction: column;
   margin: 2rem auto;
   width: 95vw;
 }
 
-.rt-info-banner-wrapper {
+.rt-banner-wrapper {
+  align-items: center;
   background: rgba(238, 72, 72, 0.75);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.rt-banner-wrapper h2 {
+  color: #333;
+  font-size: 4vw;
+}
+
+.rtchart-time-banner-wrapper {
+  align-items: center;
+  background: rgba(238, 72, 72, 0.75);
+  display: flex;
   width: 100%;
 }
 
@@ -16,10 +34,12 @@
 .rtchart-svg {
   background: rgba(0, 0, 0, 0.7);
 }
-
-.rtchart-button-ctrl-wrapper {
-  background: rgba(238, 72, 72, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+.rtchart-bottom-axis,
+.rtchart-top-axis {
+  fill: white;
+  stroke: white;
 }
+
+/* ==============
+     RTCard
+=============== */
