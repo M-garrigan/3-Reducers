@@ -1,23 +1,50 @@
+import React from 'react';
+import { connect } from 'react-redux';
 
-import React, { useState } from 'react';
+import A from './A.js';
+import B from './B.js';
+import Logger from './Logger.js';
 
-import NavBar from './NavBar.js';
-import Main from './Main.js';
-import '../styles/App.css';
+import { decCountAll, incCountAll } from '../redux/actionCreators.js';
 
-export default props => {
+import './App.css';
 
-  const [category, setCategory] = useState('Streamers'); // 'Streamers' | 'Games'
-    
+const App = props => {
+  
   return (
-    <div className='app-wrapper'>
-      <NavBar
-        category={category}
-        setCategory={setCategory}
-      />
-      <Main 
-        category={category}
-      />
+    <div className="app-wrapper">
+
+      <div className="app-display">
+
+        <div className="window-button-group">
+          <div className="app-button-group">
+            <button 
+              onClick={props.decCountAll}
+            >global -</button>
+            <button 
+              onClick={props.incCountAll}
+            >global +</button>
+          </div>
+        
+          <div className="window-group">
+            <A />
+            <B />
+          </div>
+        </div>
+
+        <Logger />
+      </div>
+      
     </div>
   );
-}
+};
+
+const mapDispatchToProps = dispatch => ({
+  decCountAll: () => dispatch(decCountAll()),
+  incCountAll: () => dispatch(incCountAll())
+});
+
+export default connect(
+  null, 
+  mapDispatchToProps
+)(App);

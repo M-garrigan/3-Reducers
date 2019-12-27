@@ -1,104 +1,55 @@
 const webpack = require('webpack');
 const path = require('path');
-// const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-// {
-//   "presets": [
-//     ["env", {"modules": false}],
-//     "react", "stage-0", "airbnb"
-//   ]
-// }
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  target: 'node',
   entry: './src/index.js',
   output: {
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'style.css'
-    })
+    new CopyPlugin([
+      {
+        from: path.resolve(process.cwd(), 'public/index.html'), 
+        to: path.resolve(process.cwd(), 'dist')
+      }
+    ])
   ],
+  
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-        // loader : 'babel-loader',
-        // // use: 'babel-loader',
-        // options: {
-        //   presets: ['react', 'env', 'stage-0']
-        // }
+        exclude: /(node_modules|bower_components)/,
+        use: ['babel-loader']
       },
       {
         test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.(csv|tsv)$/,
         use: [
-          'style-loader',
-          'css-loader'
+          'csv-loader'
         ]
       },
       {
-        test: /\.svg$/,
+        test: /\.(png|svg|jpg|gif)$/,
         use: [
           'file-loader'
         ]
       },
       {
-        test: /\.png$/,
+        test: /\.xml$/,
         use: [
-          {
-            loader: 'url-loader',
-            options: {
-              mimetype: 'image/png'
-            }
-          }
+          'xml-loader'
         ]
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-      },
-      {
-        test: /\.csv$/,
-        loader: 'csv-loader',
-        options: {
-          dynamicTyping: true,
-          header: true,
-          skipEmptyLines: true
-        }
       }
     ]
   },
-  // node: {
-  //   console: 'empty',
-  //   fs: 'empty',
-  //   net: 'empty',
-  //   tls: 'empty'
-  // },
   resolve: {
-    extensions: [
-      '.js',
-      '.jsx'
-    ]
-  },
-  devServer: {
-    contentBase: './dist'
-  },
-  // plugins: [
-  //   new LodashModuleReplacementPlugin,
-  //   new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/)
-  // ]
-}
+    extensions: ['*', '.js', '.jsx']
+  }
+};
