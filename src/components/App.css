@@ -28,29 +28,33 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  justify-content: space-evenly;
+  height: 80%;
+  justify-content: center;
   width: 60%;
 }
 
 .app-button-group {
-  background-image: linear-gradient(to left, yellow, red, yellow);
+  align-items: center;
+  background-image: linear-gradient(magenta, rgb(134, 4, 134));
+  display: flex;
   height: 20%;
+  justify-content: space-evenly;
   width: 100%;
 }
-
-.button-group button {
-  background: rgba(255, 255, 255, 0.671);
-  color: #333;
+.app-button {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 1vw;
   cursor: pointer;
-  font-size: 4vw;
+  font-size: 3vw;
+  height: 50%;
+  width: 35%;
 }
+
 
 .window-group {
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  height: 70%;
   width: 100%;
 }
 
@@ -62,7 +66,7 @@
 
 .logger-name {
   color: white;
-  height: 15%;
+  height: 10%;
   font-size: 4vw;
   text-align: center;
 }
@@ -71,7 +75,7 @@
   background: white;
   display: flex;
   flex-direction: column;
-  height: 85%;
+  height: 90%;
   font-size: 1.5vw;
   overflow: scroll;
 }
@@ -82,8 +86,41 @@
 }
 
 /* WINDOWS */
+.A-wrapper {
+  background-image: linear-gradient(cyan, rgb(1, 133, 133));
+}
+
+.B-wrapper {
+  background-image: linear-gradient(lime, rgb(2, 136, 2));
+}
 
 .basic-wrapper {
-  height: 40%;
-  width: 40%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-bottom: 1vw;
+  width: 60%;
+}
+
+.basic-name {
+  font-size: 6vw;
+}
+.basic-count {
+  font-size: 3vw;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.button-group button {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1vw;
+  cursor: pointer;
+  font-size: 6vw;
+  margin: 2vw 0 1vw;
+  width: 35%;
 }

@@ -1,7 +1,7 @@
 
 import { combineReducers } from 'redux';
 
-const reducer_A = (state = {count: 0}, action) => {
+export const reducer_A = (state = {count: 0}, action) => {
 
   switch (action.type) {
 
@@ -22,7 +22,7 @@ const reducer_A = (state = {count: 0}, action) => {
   }
 };
 
-const reducer_B = (state = {count: 0}, action) => {
+export const reducer_B = (state = {count: 0}, action) => {
 
   switch (action.type) {
 
@@ -44,7 +44,7 @@ const reducer_B = (state = {count: 0}, action) => {
 };
 
 
-const reducer_global = (state = {count: 0, log: []}, action) => {
+export const reducer_global = (state = {count: 0, log: []}, action) => {
   const { count, log } = state;
 
   switch (action.type) {

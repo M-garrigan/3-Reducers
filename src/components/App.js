@@ -20,9 +20,11 @@ const App = props => {
           <div className="app-button-group">
             <button 
               onClick={props.decCountAll}
+              className="app-button"
             >global -</button>
             <button 
               onClick={props.incCountAll}
+              className="app-button"
             >global +</button>
           </div>
         
