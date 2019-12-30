@@ -1,37 +1,176 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, cleanup } from '@testing-library/react';
+import { createStore } from 'redux';
+import reducer from '../redux/reducer.js';
+import { Provider as MockProvider } from 'react-redux';
+import { render, fireEvent } from '@testing-library/react';
+import regeneratorRuntime from 'regenerator-runtime';
 
 import App from './App.js';
 
-// afterEach(cleanup);
+let store = null;
+let getByTestId = null;
+let getByText = null;
 
-// test('App component renders a global wrapper', () => {
-//   const { getByTestId } = render(<MemoryRouter initialEntries={["/"]}><App /></MemoryRouter>);
+beforeEach( () => {
+  store = createStore(reducer);
 
-//   expect(getByTestId('global').className).toEqual('global-wrapper');
-// });
+  let container = render(
+    <MockProvider store={store}>
+      <App />
+    </MockProvider>
+    );
 
-// test('App component renders a navbar', () => {
-//   const { getByTestId } = render(<MemoryRouter initialEntries={["/"]}><App /></MemoryRouter>);
+  getByTestId = container.getByTestId;
+  getByText = container.getByText;
+});
 
-//   expect(getByTestId('navbar').className).toEqual('navbar-wrapper');
-// });
+afterEach( () => {
+  store = null;
+  getByTestId = null;
+  getByText = null;
+});
 
-// test('App component renders a the hero text STAR', () => {
-//   const { getByText } = render(<MemoryRouter initialEntries={["/"]}><App /></MemoryRouter>);
 
-//   expect(getByText('STAR').className).toEqual('app-hero-text');
-// });
+test('App component renders', () => {
+  expect(getByTestId('appWrapper').className).toEqual('app-wrapper');
+});
 
-// test('App component renders a the hero text STAR', () => {
-//   const { getByText } = render(<MemoryRouter initialEntries={["/"]}><App /></MemoryRouter>);
+test('App component renders with one child', () => {
+  expect(getByTestId('appWrapper').children.length).toEqual(1);
+});
 
-//   expect(getByText('WARS').className).toEqual('app-hero-text');
-// });
+test('A component renders', () => {
+  expect(getByTestId('aWrapper').className).toEqual('A-wrapper basic-wrapper');
+});
 
-// test('App component renders a button with the text "Explore the Galaxy"', () => {
-//   const { getByText } = render(<MemoryRouter initialEntries={["/"]}><App /></MemoryRouter>);
+test('A component renders with 4 children', () => {
+  expect(getByTestId('aWrapper').children.length).toEqual(4);
+});
 
-//   expect(getByText('Explore the Galaxy').className).toEqual('app-button');
-// });
+test('B component renders', () => {
+  expect(getByTestId('bWrapper').className).toEqual('B-wrapper basic-wrapper');
+});
+
+test('B component renders with 4 children', () => {
+  expect(getByTestId('bWrapper').children.length).toEqual(4);
+});
+
+test('Logger component renders', () => {
+  expect(getByTestId('loggerWrapper').className).toEqual('logger-wrapper');
+});
+
+test('Logger component renders with 2 children', () => {
+  expect(getByTestId('loggerWrapper').children.length).toEqual(2);
+});
+  
+test('Global Decrement Button updates A & B components correctly after click', async () => {
+  
+  fireEvent.click(getByText('global -'));
+
+  const elementA = await getByTestId('global-count-a');
+  const elementB = await getByTestId('global-count-b');
+    
+  expect(elementA.innerHTML).toEqual('Global Count: -1');
+  expect(elementB.innerHTML).toEqual('Global Count: -1');
+});
+
+test('Global Increment Button updates A & B components correctly after click', async () => {
+
+  fireEvent.click(getByText('global +'));
+
+  const elementA = await getByTestId('global-count-a');
+  const elementB = await getByTestId('global-count-b');
+    
+  expect(elementA.innerHTML).toEqual('Global Count: 1');
+  expect(elementB.innerHTML).toEqual('Global Count: 1');
+});
+
+test('Local A Decrement Button updates A component correctly after click', async () => {
+
+  fireEvent.click(getByTestId('dec-count-a'));
+
+  const element = await getByTestId('display-count-a');
+    
+  expect(element.innerHTML).toEqual('-A- Count: -1');
+});
+
+test('Local A Increment Button updates A component correctly after click', async () => {
+
+  fireEvent.click(getByTestId('inc-count-a'));
+
+  const element = await getByTestId('display-count-a');
+    
+  expect(element.innerHTML).toEqual('-A- Count: 1');
+});
+
+test('Local B Decrement Button updates B component correctly after click', async () => {
+
+  fireEvent.click(getByTestId('dec-count-b'));
+
+  const element = await getByTestId('display-count-b');
+    
+  expect(element.innerHTML).toEqual('-B- Count: -1');
+});
+
+test('Local B Increment Button updates B component correctly after click', async () => {
+
+  fireEvent.click(getByTestId('inc-count-b'));
+
+  const element = await getByTestId('display-count-b');
+    
+  expect(element.innerHTML).toEqual('-B- Count: 1');
+});
+
+test('Logger correctly updates to show last action', async () => {
+
+  fireEvent.click(getByText('global -'));
+
+  const element = await getByTestId('logger');
+    
+  expect(element.firstChild.innerHTML).toEqual('DEC_ALL');
+});
+
+test('Logger correctly updates to show last action', async () => {
+
+  fireEvent.click(getByText('global +'));
+
+  const element = await getByTestId('logger');
+    
+  expect(element.firstChild.innerHTML).toEqual('INC_ALL');
+});
+
+test('Logger correctly updates to show last action', async () => {
+
+  fireEvent.click(getByTestId('dec-count-a'));
+
+  const element = await getByTestId('logger');
+    
+  expect(element.firstChild.innerHTML).toEqual('DEC_A');
+});
+
+test('Logger correctly updates to show last action', async () => {
+
+  fireEvent.click(getByTestId('inc-count-a'));
+
+  const element = await getByTestId('logger');
+    
+  expect(element.firstChild.innerHTML).toEqual('INC_A');
+});
+
+test('Logger correctly updates to show last action', async () => {
+
+  fireEvent.click(getByTestId('dec-count-b'));
+
+  const element = await getByTestId('logger');
+    
+  expect(element.firstChild.innerHTML).toEqual('DEC_B');
+});
+
+test('Logger correctly updates to show last action', async () => {
+
+  fireEvent.click(getByTestId('inc-count-b'));
+
+  const element = await getByTestId('logger');
+    
+  expect(element.firstChild.innerHTML).toEqual('INC_B'); 
+});
